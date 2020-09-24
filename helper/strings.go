@@ -1,7 +1,6 @@
 package helper
 
 import (
-	"log"
 	"strings"
 	"unicode"
 )
@@ -12,7 +11,6 @@ func ToLowerCamleCase(s string) string {
 		return s
 	}
 	tokens := tokenize(s)
-	log.Println(tokens)
 	for i, t := range tokens {
 		tail := t[1:]
 		if i == 0 {
