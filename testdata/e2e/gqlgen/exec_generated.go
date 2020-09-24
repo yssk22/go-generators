@@ -133,256 +133,256 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 	_ = ec
 	switch typeName + "." + field {
 
-	case "ComplexField.field_nullable_srinrg":
+	case "ComplexField.fieldNullableSrinrg":
 		if e.complexity.ComplexField.FieldNullableSrinrg == nil {
 			break
 		}
 
 		return e.complexity.ComplexField.FieldNullableSrinrg(childComplexity), true
 
-	case "ComplexField.field_string":
+	case "ComplexField.fieldString":
 		if e.complexity.ComplexField.FieldString == nil {
 			break
 		}
 
 		return e.complexity.ComplexField.FieldString(childComplexity), true
 
-	case "ComplexInterface.field_like_method":
+	case "ComplexInterface.fieldLikeMethod":
 		if e.complexity.ComplexInterface.FieldLikeMethod == nil {
 			break
 		}
 
 		return e.complexity.ComplexInterface.FieldLikeMethod(childComplexity), true
 
-	case "ComplexInterface.method_to_call":
+	case "ComplexInterface.methodToCall":
 		if e.complexity.ComplexInterface.MethodToCall == nil {
 			break
 		}
 
-		args, err := ec.field_ComplexInterface_method_to_call_args(context.TODO(), rawArgs)
+		args, err := ec.field_ComplexInterface_methodToCall_args(context.TODO(), rawArgs)
 		if err != nil {
 			return 0, false
 		}
 
 		return e.complexity.ComplexInterface.MethodToCall(childComplexity, args["aa"].(string)), true
 
-	case "ComplexResult.field_nullable_srinrg":
+	case "ComplexResult.fieldNullableSrinrg":
 		if e.complexity.ComplexResult.FieldNullableSrinrg == nil {
 			break
 		}
 
 		return e.complexity.ComplexResult.FieldNullableSrinrg(childComplexity), true
 
-	case "ComplexResult.field_string":
+	case "ComplexResult.fieldString":
 		if e.complexity.ComplexResult.FieldString == nil {
 			break
 		}
 
 		return e.complexity.ComplexResult.FieldString(childComplexity), true
 
-	case "EmbeddedField.embedded_field_nullable_srinrg":
+	case "EmbeddedField.embeddedFieldNullableSrinrg":
 		if e.complexity.EmbeddedField.EmbeddedFieldNullableSrinrg == nil {
 			break
 		}
 
 		return e.complexity.EmbeddedField.EmbeddedFieldNullableSrinrg(childComplexity), true
 
-	case "EmbeddedField.embedded_field_string":
+	case "EmbeddedField.embeddedFieldString":
 		if e.complexity.EmbeddedField.EmbeddedFieldString == nil {
 			break
 		}
 
 		return e.complexity.EmbeddedField.EmbeddedFieldString(childComplexity), true
 
-	case "Mutation.example_mutation":
+	case "Mutation.exampleMutation":
 		if e.complexity.Mutation.ExampleMutation == nil {
 			break
 		}
 
 		return e.complexity.Mutation.ExampleMutation(childComplexity), true
 
-	case "MutationExample.method_with_context":
+	case "MutationExample.methodWithContext":
 		if e.complexity.MutationExample.MethodWithContext == nil {
 			break
 		}
 
-		args, err := ec.field_MutationExample_method_with_context_args(context.TODO(), rawArgs)
+		args, err := ec.field_MutationExample_methodWithContext_args(context.TODO(), rawArgs)
 		if err != nil {
 			return 0, false
 		}
 
 		return e.complexity.MutationExample.MethodWithContext(childComplexity, args["complexQueryParams"].(*models.ComplexParams)), true
 
-	case "MutationExample.method_with_context_alias":
+	case "MutationExample.methodWithContextAlias":
 		if e.complexity.MutationExample.MethodWithContextAlias == nil {
 			break
 		}
 
-		args, err := ec.field_MutationExample_method_with_context_alias_args(context.TODO(), rawArgs)
+		args, err := ec.field_MutationExample_methodWithContextAlias_args(context.TODO(), rawArgs)
 		if err != nil {
 			return 0, false
 		}
 
 		return e.complexity.MutationExample.MethodWithContextAlias(childComplexity, args["complexQueryParams"].(*models.ComplexParams)), true
 
-	case "MutationExample.method_with_custom_scalar_and_enum":
+	case "MutationExample.methodWithCustomScalarAndEnum":
 		if e.complexity.MutationExample.MethodWithCustomScalarAndEnum == nil {
 			break
 		}
 
-		args, err := ec.field_MutationExample_method_with_custom_scalar_and_enum_args(context.TODO(), rawArgs)
+		args, err := ec.field_MutationExample_methodWithCustomScalarAndEnum_args(context.TODO(), rawArgs)
 		if err != nil {
 			return 0, false
 		}
 
 		return e.complexity.MutationExample.MethodWithCustomScalarAndEnum(childComplexity, args["y"].(models.YesNo), args["v"].(models.MyEnum)), true
 
-	case "MutationExample.method_without_context":
+	case "MutationExample.methodWithoutContext":
 		if e.complexity.MutationExample.MethodWithoutContext == nil {
 			break
 		}
 
-		args, err := ec.field_MutationExample_method_without_context_args(context.TODO(), rawArgs)
+		args, err := ec.field_MutationExample_methodWithoutContext_args(context.TODO(), rawArgs)
 		if err != nil {
 			return 0, false
 		}
 
 		return e.complexity.MutationExample.MethodWithoutContext(childComplexity, args["complexQueryParams"].(*models.ComplexParams)), true
 
-	case "Query.query_example":
+	case "Query.queryExample":
 		if e.complexity.Query.QueryExample == nil {
 			break
 		}
 
 		return e.complexity.Query.QueryExample(childComplexity), true
 
-	case "TypeExample.embedded_field":
+	case "TypeExample.embeddedField":
 		if e.complexity.TypeExample.EmbeddedField == nil {
 			break
 		}
 
 		return e.complexity.TypeExample.EmbeddedField(childComplexity), true
 
-	case "TypeExample.field_array":
+	case "TypeExample.fieldArray":
 		if e.complexity.TypeExample.FieldArray == nil {
 			break
 		}
 
 		return e.complexity.TypeExample.FieldArray(childComplexity), true
 
-	case "TypeExample.field_array_of_array":
+	case "TypeExample.fieldArrayOfArray":
 		if e.complexity.TypeExample.FieldArrayOfArray == nil {
 			break
 		}
 
 		return e.complexity.TypeExample.FieldArrayOfArray(childComplexity), true
 
-	case "TypeExample.field_boolean":
+	case "TypeExample.fieldBoolean":
 		if e.complexity.TypeExample.FieldBoolean == nil {
 			break
 		}
 
 		return e.complexity.TypeExample.FieldBoolean(childComplexity), true
 
-	case "TypeExample.field_float":
+	case "TypeExample.fieldFloat":
 		if e.complexity.TypeExample.FieldFloat == nil {
 			break
 		}
 
 		return e.complexity.TypeExample.FieldFloat(childComplexity), true
 
-	case "TypeExample.field_int":
+	case "TypeExample.fieldInt":
 		if e.complexity.TypeExample.FieldInt == nil {
 			break
 		}
 
 		return e.complexity.TypeExample.FieldInt(childComplexity), true
 
-	case "TypeExample.field_interface":
+	case "TypeExample.fieldInterface":
 		if e.complexity.TypeExample.FieldInterface == nil {
 			break
 		}
 
 		return e.complexity.TypeExample.FieldInterface(childComplexity), true
 
-	case "TypeExample.field_map":
+	case "TypeExample.fieldMap":
 		if e.complexity.TypeExample.FieldMap == nil {
 			break
 		}
 
 		return e.complexity.TypeExample.FieldMap(childComplexity), true
 
-	case "TypeExample.field_nullable_boolean":
+	case "TypeExample.fieldNullableBoolean":
 		if e.complexity.TypeExample.FieldNullableBoolean == nil {
 			break
 		}
 
 		return e.complexity.TypeExample.FieldNullableBoolean(childComplexity), true
 
-	case "TypeExample.field_nullable_complex":
+	case "TypeExample.fieldNullableComplex":
 		if e.complexity.TypeExample.FieldNullableComplex == nil {
 			break
 		}
 
 		return e.complexity.TypeExample.FieldNullableComplex(childComplexity), true
 
-	case "TypeExample.field_nullable_element_array":
+	case "TypeExample.fieldNullableElementArray":
 		if e.complexity.TypeExample.FieldNullableElementArray == nil {
 			break
 		}
 
 		return e.complexity.TypeExample.FieldNullableElementArray(childComplexity), true
 
-	case "TypeExample.field_nullable_float":
+	case "TypeExample.fieldNullableFloat":
 		if e.complexity.TypeExample.FieldNullableFloat == nil {
 			break
 		}
 
 		return e.complexity.TypeExample.FieldNullableFloat(childComplexity), true
 
-	case "TypeExample.field_nullable_int":
+	case "TypeExample.fieldNullableInt":
 		if e.complexity.TypeExample.FieldNullableInt == nil {
 			break
 		}
 
 		return e.complexity.TypeExample.FieldNullableInt(childComplexity), true
 
-	case "TypeExample.field_nullable_srinrg":
+	case "TypeExample.fieldNullableSrinrg":
 		if e.complexity.TypeExample.FieldNullableSrinrg == nil {
 			break
 		}
 
 		return e.complexity.TypeExample.FieldNullableSrinrg(childComplexity), true
 
-	case "TypeExample.field_nullable_user_defined_scalar":
+	case "TypeExample.fieldNullableUserDefinedScalar":
 		if e.complexity.TypeExample.FieldNullableUserDefinedScalar == nil {
 			break
 		}
 
 		return e.complexity.TypeExample.FieldNullableUserDefinedScalar(childComplexity), true
 
-	case "TypeExample.field_string":
+	case "TypeExample.fieldString":
 		if e.complexity.TypeExample.FieldString == nil {
 			break
 		}
 
 		return e.complexity.TypeExample.FieldString(childComplexity), true
 
-	case "TypeExample.field_struct":
+	case "TypeExample.fieldStruct":
 		if e.complexity.TypeExample.FieldStruct == nil {
 			break
 		}
 
 		return e.complexity.TypeExample.FieldStruct(childComplexity), true
 
-	case "TypeExample.field_user_defined_enum":
+	case "TypeExample.fieldUserDefinedEnum":
 		if e.complexity.TypeExample.FieldUserDefinedEnum == nil {
 			break
 		}
 
 		return e.complexity.TypeExample.FieldUserDefinedEnum(childComplexity), true
 
-	case "TypeExample.field_user_defined_scalar":
+	case "TypeExample.fieldUserDefinedScalar":
 		if e.complexity.TypeExample.FieldUserDefinedScalar == nil {
 			break
 		}
@@ -403,60 +403,60 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.TypeExample.ID(childComplexity), true
 
-	case "TypeExample.method_with_alias":
+	case "TypeExample.methodWithAlias":
 		if e.complexity.TypeExample.MethodWithAlias == nil {
 			break
 		}
 
-		args, err := ec.field_TypeExample_method_with_alias_args(context.TODO(), rawArgs)
+		args, err := ec.field_TypeExample_methodWithAlias_args(context.TODO(), rawArgs)
 		if err != nil {
 			return 0, false
 		}
 
 		return e.complexity.TypeExample.MethodWithAlias(childComplexity, args["complexQueryParams"].(*models.ComplexParams)), true
 
-	case "TypeExample.method_with_context":
+	case "TypeExample.methodWithContext":
 		if e.complexity.TypeExample.MethodWithContext == nil {
 			break
 		}
 
-		args, err := ec.field_TypeExample_method_with_context_args(context.TODO(), rawArgs)
+		args, err := ec.field_TypeExample_methodWithContext_args(context.TODO(), rawArgs)
 		if err != nil {
 			return 0, false
 		}
 
 		return e.complexity.TypeExample.MethodWithContext(childComplexity, args["complexQueryParams"].(*models.ComplexParams)), true
 
-	case "TypeExample.method_with_result":
+	case "TypeExample.methodWithResult":
 		if e.complexity.TypeExample.MethodWithResult == nil {
 			break
 		}
 
-		args, err := ec.field_TypeExample_method_with_result_args(context.TODO(), rawArgs)
+		args, err := ec.field_TypeExample_methodWithResult_args(context.TODO(), rawArgs)
 		if err != nil {
 			return 0, false
 		}
 
 		return e.complexity.TypeExample.MethodWithResult(childComplexity, args["complexQueryParams"].(*models.ComplexResult)), true
 
-	case "TypeExample.method_without_context":
+	case "TypeExample.methodWithoutContext":
 		if e.complexity.TypeExample.MethodWithoutContext == nil {
 			break
 		}
 
-		args, err := ec.field_TypeExample_method_without_context_args(context.TODO(), rawArgs)
+		args, err := ec.field_TypeExample_methodWithoutContext_args(context.TODO(), rawArgs)
 		if err != nil {
 			return 0, false
 		}
 
 		return e.complexity.TypeExample.MethodWithoutContext(childComplexity, args["complexQueryParams"].(*models.ComplexParams)), true
 
-	case "TypeExample.method_without_error":
+	case "TypeExample.methodWithoutError":
 		if e.complexity.TypeExample.MethodWithoutError == nil {
 			break
 		}
 
-		args, err := ec.field_TypeExample_method_without_error_args(context.TODO(), rawArgs)
+		args, err := ec.field_TypeExample_methodWithoutError_args(context.TODO(), rawArgs)
 		if err != nil {
 			return 0, false
 		}
@@ -535,64 +535,64 @@ directive @goModel(
 
 
 type Query @goModel(model: "github.com/yssk22/go-generators/testdata/e2e/models.Query") {
-  query_example: TypeExample
+  queryExample: TypeExample
 }
 
 type Mutation @goModel(model: "github.com/yssk22/go-generators/testdata/e2e/models.Mutation") {
-  example_mutation: MutationExample
+  exampleMutation: MutationExample
 }
 
 type TypeExample @goModel(model: "github.com/yssk22/go-generators/testdata/e2e/models.TypeExample") {
   id: ID!
-  field_string: String!
-  field_nullable_srinrg: String
-  field_int: Int!
-  field_nullable_int: Int
-  field_float: Float!
-  field_nullable_float: Float
-  field_boolean: Boolean!
-  field_nullable_boolean: Boolean
-  field_map: Map!
-  field_user_defined_scalar: YesNo!
-  field_nullable_user_defined_scalar: YesNo
-  field_user_defined_enum: MyEnum!
-  field_struct: ComplexField!
-  field_nullable_complex: ComplexField
-  field_interface: ComplexInterface!
-  field_array: [String!]
-  field_nullable_element_array: [String]
-  field_array_of_array: [[[String]]]
+  fieldString: String!
+  fieldNullableSrinrg: String
+  fieldInt: Int!
+  fieldNullableInt: Int
+  fieldFloat: Float!
+  fieldNullableFloat: Float
+  fieldBoolean: Boolean!
+  fieldNullableBoolean: Boolean
+  fieldMap: Map!
+  fieldUserDefinedScalar: YesNo!
+  fieldNullableUserDefinedScalar: YesNo
+  fieldUserDefinedEnum: MyEnum!
+  fieldStruct: ComplexField!
+  fieldNullableComplex: ComplexField
+  fieldInterface: ComplexInterface!
+  fieldArray: [String!]
+  fieldNullableElementArray: [String]
+  fieldArrayOfArray: [[[String]]]
   fieldWithTag: String
-  embedded_field: EmbeddedField!
-  method_with_context(
+  embeddedField: EmbeddedField!
+  methodWithContext(
     complexQueryParams: ComplexParamsInput
   ): ComplexResult
-  method_without_context(
+  methodWithoutContext(
     complexQueryParams: ComplexParamsInput
   ): ComplexResult
-  method_without_error(
+  methodWithoutError(
     complexQueryParams: ComplexParamsInput
   ): ComplexResult
-  method_with_alias(
+  methodWithAlias(
     complexQueryParams: ComplexParamsInput
   ): ComplexResult
-  method_with_result(
+  methodWithResult(
     complexQueryParams: ComplexResultInput
   ): ComplexResult
 }
 
 type MutationExample @goModel(model: "github.com/yssk22/go-generators/testdata/e2e/models.MutationExample") {
-  method_with_context(
+  methodWithContext(
     complexQueryParams: ComplexParamsInput
   ): ComplexResult
-  method_without_context(
+  methodWithoutContext(
     complexQueryParams: ComplexParamsInput
   ): ComplexResult
-  method_with_custom_scalar_and_enum(
+  methodWithCustomScalarAndEnum(
     y: YesNo!,
     v: MyEnum!
   ): ComplexResult
-  method_with_context_alias(
+  methodWithContextAlias(
     complexQueryParams: ComplexParamsInput
   ): ComplexResult
 }
@@ -607,41 +607,41 @@ enum MyEnum @goModel(model: "github.com/yssk22/go-generators/testdata/e2e/models
 }
 
 type ComplexField @goModel(model: "github.com/yssk22/go-generators/testdata/e2e/models.ComplexField") {
-  field_string: String!
-  field_nullable_srinrg: String
+  fieldString: String!
+  fieldNullableSrinrg: String
 }
 
 type ComplexInterface @goModel(model: "github.com/yssk22/go-generators/testdata/e2e/models.ComplexInterface") {
-  field_like_method: [String!]
-  method_to_call(
+  fieldLikeMethod: [String!]
+  methodToCall(
     aa: String!
   ): ComplexField!
 }
 
 type EmbeddedField @goModel(model: "github.com/yssk22/go-generators/testdata/e2e/models.EmbeddedField") {
-  embedded_field_string: String!
-  embedded_field_nullable_srinrg: String
+  embeddedFieldString: String!
+  embeddedFieldNullableSrinrg: String
 }
 
 type ComplexResult @goModel(model: "github.com/yssk22/go-generators/testdata/e2e/models.ComplexResult") {
-  field_string: String!
-  field_nullable_srinrg: String
+  fieldString: String!
+  fieldNullableSrinrg: String
 }
 
 input ComplexParamsInput @goModel(model: "github.com/yssk22/go-generators/testdata/e2e/models.ComplexParams") {
-  field_string: String!
-  field_nullable_srinrg: String
-  field_struct: NestedComplexParamsInput!
+  fieldString: String!
+  fieldNullableSrinrg: String
+  fieldStruct: NestedComplexParamsInput!
 }
 
 input ComplexResultInput @goModel(model: "github.com/yssk22/go-generators/testdata/e2e/models.ComplexResult") {
-  field_string: String!
-  field_nullable_srinrg: String
+  fieldString: String!
+  fieldNullableSrinrg: String
 }
 
 input NestedComplexParamsInput @goModel(model: "github.com/yssk22/go-generators/testdata/e2e/models.NestedComplexParams") {
   field: String!
-  field_struct: DeepNestedComplexParamsInput!
+  fieldStruct: DeepNestedComplexParamsInput!
 }
 
 input DeepNestedComplexParamsInput @goModel(model: "github.com/yssk22/go-generators/testdata/e2e/models.DeepNestedComplexParams") {
@@ -700,7 +700,7 @@ func (ec *executionContext) dir_skip_args(ctx context.Context, rawArgs map[strin
 	return args, nil
 }
 
-func (ec *executionContext) field_ComplexInterface_method_to_call_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_ComplexInterface_methodToCall_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
 	var err error
 	args := map[string]interface{}{}
 	var arg0 string
@@ -715,7 +715,7 @@ func (ec *executionContext) field_ComplexInterface_method_to_call_args(ctx conte
 	return args, nil
 }
 
-func (ec *executionContext) field_MutationExample_method_with_context_alias_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_MutationExample_methodWithContextAlias_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
 	var err error
 	args := map[string]interface{}{}
 	var arg0 *models.ComplexParams
@@ -730,7 +730,7 @@ func (ec *executionContext) field_MutationExample_method_with_context_alias_args
 	return args, nil
 }
 
-func (ec *executionContext) field_MutationExample_method_with_context_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_MutationExample_methodWithContext_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
 	var err error
 	args := map[string]interface{}{}
 	var arg0 *models.ComplexParams
@@ -745,7 +745,7 @@ func (ec *executionContext) field_MutationExample_method_with_context_args(ctx c
 	return args, nil
 }
 
-func (ec *executionContext) field_MutationExample_method_with_custom_scalar_and_enum_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_MutationExample_methodWithCustomScalarAndEnum_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
 	var err error
 	args := map[string]interface{}{}
 	var arg0 models.YesNo
@@ -769,7 +769,7 @@ func (ec *executionContext) field_MutationExample_method_with_custom_scalar_and_
 	return args, nil
 }
 
-func (ec *executionContext) field_MutationExample_method_without_context_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_MutationExample_methodWithoutContext_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
 	var err error
 	args := map[string]interface{}{}
 	var arg0 *models.ComplexParams
@@ -799,7 +799,7 @@ func (ec *executionContext) field_Query___type_args(ctx context.Context, rawArgs
 	return args, nil
 }
 
-func (ec *executionContext) field_TypeExample_method_with_alias_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_TypeExample_methodWithAlias_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
 	var err error
 	args := map[string]interface{}{}
 	var arg0 *models.ComplexParams
@@ -814,7 +814,7 @@ func (ec *executionContext) field_TypeExample_method_with_alias_args(ctx context
 	return args, nil
 }
 
-func (ec *executionContext) field_TypeExample_method_with_context_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_TypeExample_methodWithContext_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
 	var err error
 	args := map[string]interface{}{}
 	var arg0 *models.ComplexParams
@@ -829,7 +829,7 @@ func (ec *executionContext) field_TypeExample_method_with_context_args(ctx conte
 	return args, nil
 }
 
-func (ec *executionContext) field_TypeExample_method_with_result_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_TypeExample_methodWithResult_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
 	var err error
 	args := map[string]interface{}{}
 	var arg0 *models.ComplexResult
@@ -844,7 +844,7 @@ func (ec *executionContext) field_TypeExample_method_with_result_args(ctx contex
 	return args, nil
 }
 
-func (ec *executionContext) field_TypeExample_method_without_context_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_TypeExample_methodWithoutContext_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
 	var err error
 	args := map[string]interface{}{}
 	var arg0 *models.ComplexParams
@@ -859,7 +859,7 @@ func (ec *executionContext) field_TypeExample_method_without_context_args(ctx co
 	return args, nil
 }
 
-func (ec *executionContext) field_TypeExample_method_without_error_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_TypeExample_methodWithoutError_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
 	var err error
 	args := map[string]interface{}{}
 	var arg0 *models.ComplexParams
@@ -954,7 +954,7 @@ func (ec *executionContext) _fieldMiddleware(ctx context.Context, obj interface{
 
 // region    **************************** field.gotpl *****************************
 
-func (ec *executionContext) _ComplexField_field_string(ctx context.Context, field graphql.CollectedField, obj *models.ComplexField) (ret graphql.Marshaler) {
+func (ec *executionContext) _ComplexField_fieldString(ctx context.Context, field graphql.CollectedField, obj *models.ComplexField) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
 			ec.Error(ctx, ec.Recover(ctx, r))
@@ -986,7 +986,7 @@ func (ec *executionContext) _ComplexField_field_string(ctx context.Context, fiel
 	return ec.marshalNString2string(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _ComplexField_field_nullable_srinrg(ctx context.Context, field graphql.CollectedField, obj *models.ComplexField) (ret graphql.Marshaler) {
+func (ec *executionContext) _ComplexField_fieldNullableSrinrg(ctx context.Context, field graphql.CollectedField, obj *models.ComplexField) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
 			ec.Error(ctx, ec.Recover(ctx, r))
@@ -1015,7 +1015,7 @@ func (ec *executionContext) _ComplexField_field_nullable_srinrg(ctx context.Cont
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _ComplexInterface_field_like_method(ctx context.Context, field graphql.CollectedField, obj models.ComplexInterface) (ret graphql.Marshaler) {
+func (ec *executionContext) _ComplexInterface_fieldLikeMethod(ctx context.Context, field graphql.CollectedField, obj models.ComplexInterface) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
 			ec.Error(ctx, ec.Recover(ctx, r))
@@ -1044,7 +1044,7 @@ func (ec *executionContext) _ComplexInterface_field_like_method(ctx context.Cont
 	return ec.marshalOString2ᚕstringᚄ(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _ComplexInterface_method_to_call(ctx context.Context, field graphql.CollectedField, obj models.ComplexInterface) (ret graphql.Marshaler) {
+func (ec *executionContext) _ComplexInterface_methodToCall(ctx context.Context, field graphql.CollectedField, obj models.ComplexInterface) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
 			ec.Error(ctx, ec.Recover(ctx, r))
@@ -1061,7 +1061,7 @@ func (ec *executionContext) _ComplexInterface_method_to_call(ctx context.Context
 
 	ctx = graphql.WithFieldContext(ctx, fc)
 	rawArgs := field.ArgumentMap(ec.Variables)
-	args, err := ec.field_ComplexInterface_method_to_call_args(ctx, rawArgs)
+	args, err := ec.field_ComplexInterface_methodToCall_args(ctx, rawArgs)
 	if err != nil {
 		ec.Error(ctx, err)
 		return graphql.Null
@@ -1083,7 +1083,7 @@ func (ec *executionContext) _ComplexInterface_method_to_call(ctx context.Context
 	return ec.marshalNComplexField2githubᚗcomᚋyssk22ᚋgoᚑgeneratorsᚋtestdataᚋe2eᚋmodelsᚐComplexField(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _ComplexResult_field_string(ctx context.Context, field graphql.CollectedField, obj *models.ComplexResult) (ret graphql.Marshaler) {
+func (ec *executionContext) _ComplexResult_fieldString(ctx context.Context, field graphql.CollectedField, obj *models.ComplexResult) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
 			ec.Error(ctx, ec.Recover(ctx, r))
@@ -1115,7 +1115,7 @@ func (ec *executionContext) _ComplexResult_field_string(ctx context.Context, fie
 	return ec.marshalNString2string(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _ComplexResult_field_nullable_srinrg(ctx context.Context, field graphql.CollectedField, obj *models.ComplexResult) (ret graphql.Marshaler) {
+func (ec *executionContext) _ComplexResult_fieldNullableSrinrg(ctx context.Context, field graphql.CollectedField, obj *models.ComplexResult) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
 			ec.Error(ctx, ec.Recover(ctx, r))
@@ -1144,7 +1144,7 @@ func (ec *executionContext) _ComplexResult_field_nullable_srinrg(ctx context.Con
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _EmbeddedField_embedded_field_string(ctx context.Context, field graphql.CollectedField, obj *models.EmbeddedField) (ret graphql.Marshaler) {
+func (ec *executionContext) _EmbeddedField_embeddedFieldString(ctx context.Context, field graphql.CollectedField, obj *models.EmbeddedField) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
 			ec.Error(ctx, ec.Recover(ctx, r))
@@ -1176,7 +1176,7 @@ func (ec *executionContext) _EmbeddedField_embedded_field_string(ctx context.Con
 	return ec.marshalNString2string(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _EmbeddedField_embedded_field_nullable_srinrg(ctx context.Context, field graphql.CollectedField, obj *models.EmbeddedField) (ret graphql.Marshaler) {
+func (ec *executionContext) _EmbeddedField_embeddedFieldNullableSrinrg(ctx context.Context, field graphql.CollectedField, obj *models.EmbeddedField) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
 			ec.Error(ctx, ec.Recover(ctx, r))
@@ -1205,7 +1205,7 @@ func (ec *executionContext) _EmbeddedField_embedded_field_nullable_srinrg(ctx co
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _Mutation_example_mutation(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+func (ec *executionContext) _Mutation_exampleMutation(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
 			ec.Error(ctx, ec.Recover(ctx, r))
@@ -1234,7 +1234,7 @@ func (ec *executionContext) _Mutation_example_mutation(ctx context.Context, fiel
 	return ec.marshalOMutationExample2ᚖgithubᚗcomᚋyssk22ᚋgoᚑgeneratorsᚋtestdataᚋe2eᚋmodelsᚐMutationExample(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _MutationExample_method_with_context(ctx context.Context, field graphql.CollectedField, obj *models.MutationExample) (ret graphql.Marshaler) {
+func (ec *executionContext) _MutationExample_methodWithContext(ctx context.Context, field graphql.CollectedField, obj *models.MutationExample) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
 			ec.Error(ctx, ec.Recover(ctx, r))
@@ -1251,7 +1251,7 @@ func (ec *executionContext) _MutationExample_method_with_context(ctx context.Con
 
 	ctx = graphql.WithFieldContext(ctx, fc)
 	rawArgs := field.ArgumentMap(ec.Variables)
-	args, err := ec.field_MutationExample_method_with_context_args(ctx, rawArgs)
+	args, err := ec.field_MutationExample_methodWithContext_args(ctx, rawArgs)
 	if err != nil {
 		ec.Error(ctx, err)
 		return graphql.Null
@@ -1270,7 +1270,7 @@ func (ec *executionContext) _MutationExample_method_with_context(ctx context.Con
 	return ec.marshalOComplexResult2ᚖgithubᚗcomᚋyssk22ᚋgoᚑgeneratorsᚋtestdataᚋe2eᚋmodelsᚐComplexResult(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _MutationExample_method_without_context(ctx context.Context, field graphql.CollectedField, obj *models.MutationExample) (ret graphql.Marshaler) {
+func (ec *executionContext) _MutationExample_methodWithoutContext(ctx context.Context, field graphql.CollectedField, obj *models.MutationExample) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
 			ec.Error(ctx, ec.Recover(ctx, r))
@@ -1287,7 +1287,7 @@ func (ec *executionContext) _MutationExample_method_without_context(ctx context.
 
 	ctx = graphql.WithFieldContext(ctx, fc)
 	rawArgs := field.ArgumentMap(ec.Variables)
-	args, err := ec.field_MutationExample_method_without_context_args(ctx, rawArgs)
+	args, err := ec.field_MutationExample_methodWithoutContext_args(ctx, rawArgs)
 	if err != nil {
 		ec.Error(ctx, err)
 		return graphql.Null
@@ -1306,7 +1306,7 @@ func (ec *executionContext) _MutationExample_method_without_context(ctx context.
 	return ec.marshalOComplexResult2ᚖgithubᚗcomᚋyssk22ᚋgoᚑgeneratorsᚋtestdataᚋe2eᚋmodelsᚐComplexResult(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _MutationExample_method_with_custom_scalar_and_enum(ctx context.Context, field graphql.CollectedField, obj *models.MutationExample) (ret graphql.Marshaler) {
+func (ec *executionContext) _MutationExample_methodWithCustomScalarAndEnum(ctx context.Context, field graphql.CollectedField, obj *models.MutationExample) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
 			ec.Error(ctx, ec.Recover(ctx, r))
@@ -1323,7 +1323,7 @@ func (ec *executionContext) _MutationExample_method_with_custom_scalar_and_enum(
 
 	ctx = graphql.WithFieldContext(ctx, fc)
 	rawArgs := field.ArgumentMap(ec.Variables)
-	args, err := ec.field_MutationExample_method_with_custom_scalar_and_enum_args(ctx, rawArgs)
+	args, err := ec.field_MutationExample_methodWithCustomScalarAndEnum_args(ctx, rawArgs)
 	if err != nil {
 		ec.Error(ctx, err)
 		return graphql.Null
@@ -1342,7 +1342,7 @@ func (ec *executionContext) _MutationExample_method_with_custom_scalar_and_enum(
 	return ec.marshalOComplexResult2ᚖgithubᚗcomᚋyssk22ᚋgoᚑgeneratorsᚋtestdataᚋe2eᚋmodelsᚐComplexResult(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _MutationExample_method_with_context_alias(ctx context.Context, field graphql.CollectedField, obj *models.MutationExample) (ret graphql.Marshaler) {
+func (ec *executionContext) _MutationExample_methodWithContextAlias(ctx context.Context, field graphql.CollectedField, obj *models.MutationExample) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
 			ec.Error(ctx, ec.Recover(ctx, r))
@@ -1359,7 +1359,7 @@ func (ec *executionContext) _MutationExample_method_with_context_alias(ctx conte
 
 	ctx = graphql.WithFieldContext(ctx, fc)
 	rawArgs := field.ArgumentMap(ec.Variables)
-	args, err := ec.field_MutationExample_method_with_context_alias_args(ctx, rawArgs)
+	args, err := ec.field_MutationExample_methodWithContextAlias_args(ctx, rawArgs)
 	if err != nil {
 		ec.Error(ctx, err)
 		return graphql.Null
@@ -1378,7 +1378,7 @@ func (ec *executionContext) _MutationExample_method_with_context_alias(ctx conte
 	return ec.marshalOComplexResult2ᚖgithubᚗcomᚋyssk22ᚋgoᚑgeneratorsᚋtestdataᚋe2eᚋmodelsᚐComplexResult(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _Query_query_example(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+func (ec *executionContext) _Query_queryExample(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
 			ec.Error(ctx, ec.Recover(ctx, r))
@@ -1504,7 +1504,7 @@ func (ec *executionContext) _TypeExample_id(ctx context.Context, field graphql.C
 	return ec.marshalNID2string(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _TypeExample_field_string(ctx context.Context, field graphql.CollectedField, obj *models.TypeExample) (ret graphql.Marshaler) {
+func (ec *executionContext) _TypeExample_fieldString(ctx context.Context, field graphql.CollectedField, obj *models.TypeExample) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
 			ec.Error(ctx, ec.Recover(ctx, r))
@@ -1536,7 +1536,7 @@ func (ec *executionContext) _TypeExample_field_string(ctx context.Context, field
 	return ec.marshalNString2string(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _TypeExample_field_nullable_srinrg(ctx context.Context, field graphql.CollectedField, obj *models.TypeExample) (ret graphql.Marshaler) {
+func (ec *executionContext) _TypeExample_fieldNullableSrinrg(ctx context.Context, field graphql.CollectedField, obj *models.TypeExample) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
 			ec.Error(ctx, ec.Recover(ctx, r))
@@ -1565,7 +1565,7 @@ func (ec *executionContext) _TypeExample_field_nullable_srinrg(ctx context.Conte
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _TypeExample_field_int(ctx context.Context, field graphql.CollectedField, obj *models.TypeExample) (ret graphql.Marshaler) {
+func (ec *executionContext) _TypeExample_fieldInt(ctx context.Context, field graphql.CollectedField, obj *models.TypeExample) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
 			ec.Error(ctx, ec.Recover(ctx, r))
@@ -1597,7 +1597,7 @@ func (ec *executionContext) _TypeExample_field_int(ctx context.Context, field gr
 	return ec.marshalNInt2int(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _TypeExample_field_nullable_int(ctx context.Context, field graphql.CollectedField, obj *models.TypeExample) (ret graphql.Marshaler) {
+func (ec *executionContext) _TypeExample_fieldNullableInt(ctx context.Context, field graphql.CollectedField, obj *models.TypeExample) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
 			ec.Error(ctx, ec.Recover(ctx, r))
@@ -1626,7 +1626,7 @@ func (ec *executionContext) _TypeExample_field_nullable_int(ctx context.Context,
 	return ec.marshalOInt2ᚖint(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _TypeExample_field_float(ctx context.Context, field graphql.CollectedField, obj *models.TypeExample) (ret graphql.Marshaler) {
+func (ec *executionContext) _TypeExample_fieldFloat(ctx context.Context, field graphql.CollectedField, obj *models.TypeExample) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
 			ec.Error(ctx, ec.Recover(ctx, r))
@@ -1658,7 +1658,7 @@ func (ec *executionContext) _TypeExample_field_float(ctx context.Context, field 
 	return ec.marshalNFloat2float64(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _TypeExample_field_nullable_float(ctx context.Context, field graphql.CollectedField, obj *models.TypeExample) (ret graphql.Marshaler) {
+func (ec *executionContext) _TypeExample_fieldNullableFloat(ctx context.Context, field graphql.CollectedField, obj *models.TypeExample) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
 			ec.Error(ctx, ec.Recover(ctx, r))
@@ -1687,7 +1687,7 @@ func (ec *executionContext) _TypeExample_field_nullable_float(ctx context.Contex
 	return ec.marshalOFloat2ᚖfloat64(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _TypeExample_field_boolean(ctx context.Context, field graphql.CollectedField, obj *models.TypeExample) (ret graphql.Marshaler) {
+func (ec *executionContext) _TypeExample_fieldBoolean(ctx context.Context, field graphql.CollectedField, obj *models.TypeExample) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
 			ec.Error(ctx, ec.Recover(ctx, r))
@@ -1719,7 +1719,7 @@ func (ec *executionContext) _TypeExample_field_boolean(ctx context.Context, fiel
 	return ec.marshalNBoolean2bool(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _TypeExample_field_nullable_boolean(ctx context.Context, field graphql.CollectedField, obj *models.TypeExample) (ret graphql.Marshaler) {
+func (ec *executionContext) _TypeExample_fieldNullableBoolean(ctx context.Context, field graphql.CollectedField, obj *models.TypeExample) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
 			ec.Error(ctx, ec.Recover(ctx, r))
@@ -1748,7 +1748,7 @@ func (ec *executionContext) _TypeExample_field_nullable_boolean(ctx context.Cont
 	return ec.marshalOBoolean2ᚖbool(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _TypeExample_field_map(ctx context.Context, field graphql.CollectedField, obj *models.TypeExample) (ret graphql.Marshaler) {
+func (ec *executionContext) _TypeExample_fieldMap(ctx context.Context, field graphql.CollectedField, obj *models.TypeExample) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
 			ec.Error(ctx, ec.Recover(ctx, r))
@@ -1780,7 +1780,7 @@ func (ec *executionContext) _TypeExample_field_map(ctx context.Context, field gr
 	return ec.marshalNMap2map(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _TypeExample_field_user_defined_scalar(ctx context.Context, field graphql.CollectedField, obj *models.TypeExample) (ret graphql.Marshaler) {
+func (ec *executionContext) _TypeExample_fieldUserDefinedScalar(ctx context.Context, field graphql.CollectedField, obj *models.TypeExample) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
 			ec.Error(ctx, ec.Recover(ctx, r))
@@ -1812,7 +1812,7 @@ func (ec *executionContext) _TypeExample_field_user_defined_scalar(ctx context.C
 	return ec.marshalNYesNo2githubᚗcomᚋyssk22ᚋgoᚑgeneratorsᚋtestdataᚋe2eᚋmodelsᚐYesNo(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _TypeExample_field_nullable_user_defined_scalar(ctx context.Context, field graphql.CollectedField, obj *models.TypeExample) (ret graphql.Marshaler) {
+func (ec *executionContext) _TypeExample_fieldNullableUserDefinedScalar(ctx context.Context, field graphql.CollectedField, obj *models.TypeExample) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
 			ec.Error(ctx, ec.Recover(ctx, r))
@@ -1841,7 +1841,7 @@ func (ec *executionContext) _TypeExample_field_nullable_user_defined_scalar(ctx 
 	return ec.marshalOYesNo2ᚖgithubᚗcomᚋyssk22ᚋgoᚑgeneratorsᚋtestdataᚋe2eᚋmodelsᚐYesNo(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _TypeExample_field_user_defined_enum(ctx context.Context, field graphql.CollectedField, obj *models.TypeExample) (ret graphql.Marshaler) {
+func (ec *executionContext) _TypeExample_fieldUserDefinedEnum(ctx context.Context, field graphql.CollectedField, obj *models.TypeExample) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
 			ec.Error(ctx, ec.Recover(ctx, r))
@@ -1873,7 +1873,7 @@ func (ec *executionContext) _TypeExample_field_user_defined_enum(ctx context.Con
 	return ec.marshalNMyEnum2githubᚗcomᚋyssk22ᚋgoᚑgeneratorsᚋtestdataᚋe2eᚋmodelsᚐMyEnum(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _TypeExample_field_struct(ctx context.Context, field graphql.CollectedField, obj *models.TypeExample) (ret graphql.Marshaler) {
+func (ec *executionContext) _TypeExample_fieldStruct(ctx context.Context, field graphql.CollectedField, obj *models.TypeExample) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
 			ec.Error(ctx, ec.Recover(ctx, r))
@@ -1905,7 +1905,7 @@ func (ec *executionContext) _TypeExample_field_struct(ctx context.Context, field
 	return ec.marshalNComplexField2githubᚗcomᚋyssk22ᚋgoᚑgeneratorsᚋtestdataᚋe2eᚋmodelsᚐComplexField(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _TypeExample_field_nullable_complex(ctx context.Context, field graphql.CollectedField, obj *models.TypeExample) (ret graphql.Marshaler) {
+func (ec *executionContext) _TypeExample_fieldNullableComplex(ctx context.Context, field graphql.CollectedField, obj *models.TypeExample) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
 			ec.Error(ctx, ec.Recover(ctx, r))
@@ -1934,7 +1934,7 @@ func (ec *executionContext) _TypeExample_field_nullable_complex(ctx context.Cont
 	return ec.marshalOComplexField2ᚖgithubᚗcomᚋyssk22ᚋgoᚑgeneratorsᚋtestdataᚋe2eᚋmodelsᚐComplexField(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _TypeExample_field_interface(ctx context.Context, field graphql.CollectedField, obj *models.TypeExample) (ret graphql.Marshaler) {
+func (ec *executionContext) _TypeExample_fieldInterface(ctx context.Context, field graphql.CollectedField, obj *models.TypeExample) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
 			ec.Error(ctx, ec.Recover(ctx, r))
@@ -1966,7 +1966,7 @@ func (ec *executionContext) _TypeExample_field_interface(ctx context.Context, fi
 	return ec.marshalNComplexInterface2githubᚗcomᚋyssk22ᚋgoᚑgeneratorsᚋtestdataᚋe2eᚋmodelsᚐComplexInterface(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _TypeExample_field_array(ctx context.Context, field graphql.CollectedField, obj *models.TypeExample) (ret graphql.Marshaler) {
+func (ec *executionContext) _TypeExample_fieldArray(ctx context.Context, field graphql.CollectedField, obj *models.TypeExample) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
 			ec.Error(ctx, ec.Recover(ctx, r))
@@ -1995,7 +1995,7 @@ func (ec *executionContext) _TypeExample_field_array(ctx context.Context, field 
 	return ec.marshalOString2ᚕstringᚄ(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _TypeExample_field_nullable_element_array(ctx context.Context, field graphql.CollectedField, obj *models.TypeExample) (ret graphql.Marshaler) {
+func (ec *executionContext) _TypeExample_fieldNullableElementArray(ctx context.Context, field graphql.CollectedField, obj *models.TypeExample) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
 			ec.Error(ctx, ec.Recover(ctx, r))
@@ -2024,7 +2024,7 @@ func (ec *executionContext) _TypeExample_field_nullable_element_array(ctx contex
 	return ec.marshalOString2ᚕᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _TypeExample_field_array_of_array(ctx context.Context, field graphql.CollectedField, obj *models.TypeExample) (ret graphql.Marshaler) {
+func (ec *executionContext) _TypeExample_fieldArrayOfArray(ctx context.Context, field graphql.CollectedField, obj *models.TypeExample) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
 			ec.Error(ctx, ec.Recover(ctx, r))
@@ -2082,7 +2082,7 @@ func (ec *executionContext) _TypeExample_fieldWithTag(ctx context.Context, field
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _TypeExample_embedded_field(ctx context.Context, field graphql.CollectedField, obj *models.TypeExample) (ret graphql.Marshaler) {
+func (ec *executionContext) _TypeExample_embeddedField(ctx context.Context, field graphql.CollectedField, obj *models.TypeExample) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
 			ec.Error(ctx, ec.Recover(ctx, r))
@@ -2114,7 +2114,7 @@ func (ec *executionContext) _TypeExample_embedded_field(ctx context.Context, fie
 	return ec.marshalNEmbeddedField2githubᚗcomᚋyssk22ᚋgoᚑgeneratorsᚋtestdataᚋe2eᚋmodelsᚐEmbeddedField(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _TypeExample_method_with_context(ctx context.Context, field graphql.CollectedField, obj *models.TypeExample) (ret graphql.Marshaler) {
+func (ec *executionContext) _TypeExample_methodWithContext(ctx context.Context, field graphql.CollectedField, obj *models.TypeExample) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
 			ec.Error(ctx, ec.Recover(ctx, r))
@@ -2131,7 +2131,7 @@ func (ec *executionContext) _TypeExample_method_with_context(ctx context.Context
 
 	ctx = graphql.WithFieldContext(ctx, fc)
 	rawArgs := field.ArgumentMap(ec.Variables)
-	args, err := ec.field_TypeExample_method_with_context_args(ctx, rawArgs)
+	args, err := ec.field_TypeExample_methodWithContext_args(ctx, rawArgs)
 	if err != nil {
 		ec.Error(ctx, err)
 		return graphql.Null
@@ -2150,7 +2150,7 @@ func (ec *executionContext) _TypeExample_method_with_context(ctx context.Context
 	return ec.marshalOComplexResult2ᚖgithubᚗcomᚋyssk22ᚋgoᚑgeneratorsᚋtestdataᚋe2eᚋmodelsᚐComplexResult(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _TypeExample_method_without_context(ctx context.Context, field graphql.CollectedField, obj *models.TypeExample) (ret graphql.Marshaler) {
+func (ec *executionContext) _TypeExample_methodWithoutContext(ctx context.Context, field graphql.CollectedField, obj *models.TypeExample) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
 			ec.Error(ctx, ec.Recover(ctx, r))
@@ -2167,7 +2167,7 @@ func (ec *executionContext) _TypeExample_method_without_context(ctx context.Cont
 
 	ctx = graphql.WithFieldContext(ctx, fc)
 	rawArgs := field.ArgumentMap(ec.Variables)
-	args, err := ec.field_TypeExample_method_without_context_args(ctx, rawArgs)
+	args, err := ec.field_TypeExample_methodWithoutContext_args(ctx, rawArgs)
 	if err != nil {
 		ec.Error(ctx, err)
 		return graphql.Null
@@ -2186,7 +2186,7 @@ func (ec *executionContext) _TypeExample_method_without_context(ctx context.Cont
 	return ec.marshalOComplexResult2ᚖgithubᚗcomᚋyssk22ᚋgoᚑgeneratorsᚋtestdataᚋe2eᚋmodelsᚐComplexResult(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _TypeExample_method_without_error(ctx context.Context, field graphql.CollectedField, obj *models.TypeExample) (ret graphql.Marshaler) {
+func (ec *executionContext) _TypeExample_methodWithoutError(ctx context.Context, field graphql.CollectedField, obj *models.TypeExample) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
 			ec.Error(ctx, ec.Recover(ctx, r))
@@ -2203,7 +2203,7 @@ func (ec *executionContext) _TypeExample_method_without_error(ctx context.Contex
 
 	ctx = graphql.WithFieldContext(ctx, fc)
 	rawArgs := field.ArgumentMap(ec.Variables)
-	args, err := ec.field_TypeExample_method_without_error_args(ctx, rawArgs)
+	args, err := ec.field_TypeExample_methodWithoutError_args(ctx, rawArgs)
 	if err != nil {
 		ec.Error(ctx, err)
 		return graphql.Null
@@ -2222,7 +2222,7 @@ func (ec *executionContext) _TypeExample_method_without_error(ctx context.Contex
 	return ec.marshalOComplexResult2ᚖgithubᚗcomᚋyssk22ᚋgoᚑgeneratorsᚋtestdataᚋe2eᚋmodelsᚐComplexResult(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _TypeExample_method_with_alias(ctx context.Context, field graphql.CollectedField, obj *models.TypeExample) (ret graphql.Marshaler) {
+func (ec *executionContext) _TypeExample_methodWithAlias(ctx context.Context, field graphql.CollectedField, obj *models.TypeExample) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
 			ec.Error(ctx, ec.Recover(ctx, r))
@@ -2239,7 +2239,7 @@ func (ec *executionContext) _TypeExample_method_with_alias(ctx context.Context, 
 
 	ctx = graphql.WithFieldContext(ctx, fc)
 	rawArgs := field.ArgumentMap(ec.Variables)
-	args, err := ec.field_TypeExample_method_with_alias_args(ctx, rawArgs)
+	args, err := ec.field_TypeExample_methodWithAlias_args(ctx, rawArgs)
 	if err != nil {
 		ec.Error(ctx, err)
 		return graphql.Null
@@ -2258,7 +2258,7 @@ func (ec *executionContext) _TypeExample_method_with_alias(ctx context.Context, 
 	return ec.marshalOComplexResult2ᚖgithubᚗcomᚋyssk22ᚋgoᚑgeneratorsᚋtestdataᚋe2eᚋmodelsᚐComplexResult(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _TypeExample_method_with_result(ctx context.Context, field graphql.CollectedField, obj *models.TypeExample) (ret graphql.Marshaler) {
+func (ec *executionContext) _TypeExample_methodWithResult(ctx context.Context, field graphql.CollectedField, obj *models.TypeExample) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
 			ec.Error(ctx, ec.Recover(ctx, r))
@@ -2275,7 +2275,7 @@ func (ec *executionContext) _TypeExample_method_with_result(ctx context.Context,
 
 	ctx = graphql.WithFieldContext(ctx, fc)
 	rawArgs := field.ArgumentMap(ec.Variables)
-	args, err := ec.field_TypeExample_method_with_result_args(ctx, rawArgs)
+	args, err := ec.field_TypeExample_methodWithResult_args(ctx, rawArgs)
 	if err != nil {
 		ec.Error(ctx, err)
 		return graphql.Null
@@ -3291,26 +3291,26 @@ func (ec *executionContext) unmarshalInputComplexParamsInput(ctx context.Context
 
 	for k, v := range asMap {
 		switch k {
-		case "field_string":
+		case "fieldString":
 			var err error
 
-			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("field_string"))
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("fieldString"))
 			it.FieldString, err = ec.unmarshalNString2string(ctx, v)
 			if err != nil {
 				return it, err
 			}
-		case "field_nullable_srinrg":
+		case "fieldNullableSrinrg":
 			var err error
 
-			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("field_nullable_srinrg"))
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("fieldNullableSrinrg"))
 			it.FieldNullableSrinrg, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
-		case "field_struct":
+		case "fieldStruct":
 			var err error
 
-			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("field_struct"))
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("fieldStruct"))
 			it.FieldStruct, err = ec.unmarshalNNestedComplexParamsInput2githubᚗcomᚋyssk22ᚋgoᚑgeneratorsᚋtestdataᚋe2eᚋmodelsᚐNestedComplexParams(ctx, v)
 			if err != nil {
 				return it, err
@@ -3327,18 +3327,18 @@ func (ec *executionContext) unmarshalInputComplexResultInput(ctx context.Context
 
 	for k, v := range asMap {
 		switch k {
-		case "field_string":
+		case "fieldString":
 			var err error
 
-			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("field_string"))
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("fieldString"))
 			it.FieldString, err = ec.unmarshalNString2string(ctx, v)
 			if err != nil {
 				return it, err
 			}
-		case "field_nullable_srinrg":
+		case "fieldNullableSrinrg":
 			var err error
 
-			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("field_nullable_srinrg"))
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("fieldNullableSrinrg"))
 			it.FieldNullableSrinrg, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
@@ -3383,10 +3383,10 @@ func (ec *executionContext) unmarshalInputNestedComplexParamsInput(ctx context.C
 			if err != nil {
 				return it, err
 			}
-		case "field_struct":
+		case "fieldStruct":
 			var err error
 
-			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("field_struct"))
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("fieldStruct"))
 			it.FieldStruct, err = ec.unmarshalNDeepNestedComplexParamsInput2githubᚗcomᚋyssk22ᚋgoᚑgeneratorsᚋtestdataᚋe2eᚋmodelsᚐDeepNestedComplexParams(ctx, v)
 			if err != nil {
 				return it, err
@@ -3416,13 +3416,13 @@ func (ec *executionContext) _ComplexField(ctx context.Context, sel ast.Selection
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("ComplexField")
-		case "field_string":
-			out.Values[i] = ec._ComplexField_field_string(ctx, field, obj)
+		case "fieldString":
+			out.Values[i] = ec._ComplexField_fieldString(ctx, field, obj)
 			if out.Values[i] == graphql.Null {
 				invalids++
 			}
-		case "field_nullable_srinrg":
-			out.Values[i] = ec._ComplexField_field_nullable_srinrg(ctx, field, obj)
+		case "fieldNullableSrinrg":
+			out.Values[i] = ec._ComplexField_fieldNullableSrinrg(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -3445,9 +3445,9 @@ func (ec *executionContext) _ComplexInterface(ctx context.Context, sel ast.Selec
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("ComplexInterface")
-		case "field_like_method":
-			out.Values[i] = ec._ComplexInterface_field_like_method(ctx, field, obj)
-		case "method_to_call":
+		case "fieldLikeMethod":
+			out.Values[i] = ec._ComplexInterface_fieldLikeMethod(ctx, field, obj)
+		case "methodToCall":
 			field := field
 			out.Concurrently(i, func() (res graphql.Marshaler) {
 				defer func() {
@@ -3455,7 +3455,7 @@ func (ec *executionContext) _ComplexInterface(ctx context.Context, sel ast.Selec
 						ec.Error(ctx, ec.Recover(ctx, r))
 					}
 				}()
-				res = ec._ComplexInterface_method_to_call(ctx, field, obj)
+				res = ec._ComplexInterface_methodToCall(ctx, field, obj)
 				if res == graphql.Null {
 					atomic.AddUint32(&invalids, 1)
 				}
@@ -3483,13 +3483,13 @@ func (ec *executionContext) _ComplexResult(ctx context.Context, sel ast.Selectio
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("ComplexResult")
-		case "field_string":
-			out.Values[i] = ec._ComplexResult_field_string(ctx, field, obj)
+		case "fieldString":
+			out.Values[i] = ec._ComplexResult_fieldString(ctx, field, obj)
 			if out.Values[i] == graphql.Null {
 				invalids++
 			}
-		case "field_nullable_srinrg":
-			out.Values[i] = ec._ComplexResult_field_nullable_srinrg(ctx, field, obj)
+		case "fieldNullableSrinrg":
+			out.Values[i] = ec._ComplexResult_fieldNullableSrinrg(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -3512,13 +3512,13 @@ func (ec *executionContext) _EmbeddedField(ctx context.Context, sel ast.Selectio
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("EmbeddedField")
-		case "embedded_field_string":
-			out.Values[i] = ec._EmbeddedField_embedded_field_string(ctx, field, obj)
+		case "embeddedFieldString":
+			out.Values[i] = ec._EmbeddedField_embeddedFieldString(ctx, field, obj)
 			if out.Values[i] == graphql.Null {
 				invalids++
 			}
-		case "embedded_field_nullable_srinrg":
-			out.Values[i] = ec._EmbeddedField_embedded_field_nullable_srinrg(ctx, field, obj)
+		case "embeddedFieldNullableSrinrg":
+			out.Values[i] = ec._EmbeddedField_embeddedFieldNullableSrinrg(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -3545,8 +3545,8 @@ func (ec *executionContext) _Mutation(ctx context.Context, sel ast.SelectionSet)
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("Mutation")
-		case "example_mutation":
-			out.Values[i] = ec._Mutation_example_mutation(ctx, field)
+		case "exampleMutation":
+			out.Values[i] = ec._Mutation_exampleMutation(ctx, field)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -3569,7 +3569,7 @@ func (ec *executionContext) _MutationExample(ctx context.Context, sel ast.Select
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("MutationExample")
-		case "method_with_context":
+		case "methodWithContext":
 			field := field
 			out.Concurrently(i, func() (res graphql.Marshaler) {
 				defer func() {
@@ -3577,14 +3577,14 @@ func (ec *executionContext) _MutationExample(ctx context.Context, sel ast.Select
 						ec.Error(ctx, ec.Recover(ctx, r))
 					}
 				}()
-				res = ec._MutationExample_method_with_context(ctx, field, obj)
+				res = ec._MutationExample_methodWithContext(ctx, field, obj)
 				return res
 			})
-		case "method_without_context":
-			out.Values[i] = ec._MutationExample_method_without_context(ctx, field, obj)
-		case "method_with_custom_scalar_and_enum":
-			out.Values[i] = ec._MutationExample_method_with_custom_scalar_and_enum(ctx, field, obj)
-		case "method_with_context_alias":
+		case "methodWithoutContext":
+			out.Values[i] = ec._MutationExample_methodWithoutContext(ctx, field, obj)
+		case "methodWithCustomScalarAndEnum":
+			out.Values[i] = ec._MutationExample_methodWithCustomScalarAndEnum(ctx, field, obj)
+		case "methodWithContextAlias":
 			field := field
 			out.Concurrently(i, func() (res graphql.Marshaler) {
 				defer func() {
@@ -3592,7 +3592,7 @@ func (ec *executionContext) _MutationExample(ctx context.Context, sel ast.Select
 						ec.Error(ctx, ec.Recover(ctx, r))
 					}
 				}()
-				res = ec._MutationExample_method_with_context_alias(ctx, field, obj)
+				res = ec._MutationExample_methodWithContextAlias(ctx, field, obj)
 				return res
 			})
 		default:
@@ -3621,7 +3621,7 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("Query")
-		case "query_example":
+		case "queryExample":
 			field := field
 			out.Concurrently(i, func() (res graphql.Marshaler) {
 				defer func() {
@@ -3629,7 +3629,7 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 						ec.Error(ctx, ec.Recover(ctx, r))
 					}
 				}()
-				res = ec._Query_query_example(ctx, field)
+				res = ec._Query_queryExample(ctx, field)
 				return res
 			})
 		case "__type":
@@ -3663,77 +3663,77 @@ func (ec *executionContext) _TypeExample(ctx context.Context, sel ast.SelectionS
 			if out.Values[i] == graphql.Null {
 				atomic.AddUint32(&invalids, 1)
 			}
-		case "field_string":
-			out.Values[i] = ec._TypeExample_field_string(ctx, field, obj)
+		case "fieldString":
+			out.Values[i] = ec._TypeExample_fieldString(ctx, field, obj)
 			if out.Values[i] == graphql.Null {
 				atomic.AddUint32(&invalids, 1)
 			}
-		case "field_nullable_srinrg":
-			out.Values[i] = ec._TypeExample_field_nullable_srinrg(ctx, field, obj)
-		case "field_int":
-			out.Values[i] = ec._TypeExample_field_int(ctx, field, obj)
+		case "fieldNullableSrinrg":
+			out.Values[i] = ec._TypeExample_fieldNullableSrinrg(ctx, field, obj)
+		case "fieldInt":
+			out.Values[i] = ec._TypeExample_fieldInt(ctx, field, obj)
 			if out.Values[i] == graphql.Null {
 				atomic.AddUint32(&invalids, 1)
 			}
-		case "field_nullable_int":
-			out.Values[i] = ec._TypeExample_field_nullable_int(ctx, field, obj)
-		case "field_float":
-			out.Values[i] = ec._TypeExample_field_float(ctx, field, obj)
+		case "fieldNullableInt":
+			out.Values[i] = ec._TypeExample_fieldNullableInt(ctx, field, obj)
+		case "fieldFloat":
+			out.Values[i] = ec._TypeExample_fieldFloat(ctx, field, obj)
 			if out.Values[i] == graphql.Null {
 				atomic.AddUint32(&invalids, 1)
 			}
-		case "field_nullable_float":
-			out.Values[i] = ec._TypeExample_field_nullable_float(ctx, field, obj)
-		case "field_boolean":
-			out.Values[i] = ec._TypeExample_field_boolean(ctx, field, obj)
+		case "fieldNullableFloat":
+			out.Values[i] = ec._TypeExample_fieldNullableFloat(ctx, field, obj)
+		case "fieldBoolean":
+			out.Values[i] = ec._TypeExample_fieldBoolean(ctx, field, obj)
 			if out.Values[i] == graphql.Null {
 				atomic.AddUint32(&invalids, 1)
 			}
-		case "field_nullable_boolean":
-			out.Values[i] = ec._TypeExample_field_nullable_boolean(ctx, field, obj)
-		case "field_map":
-			out.Values[i] = ec._TypeExample_field_map(ctx, field, obj)
+		case "fieldNullableBoolean":
+			out.Values[i] = ec._TypeExample_fieldNullableBoolean(ctx, field, obj)
+		case "fieldMap":
+			out.Values[i] = ec._TypeExample_fieldMap(ctx, field, obj)
 			if out.Values[i] == graphql.Null {
 				atomic.AddUint32(&invalids, 1)
 			}
-		case "field_user_defined_scalar":
-			out.Values[i] = ec._TypeExample_field_user_defined_scalar(ctx, field, obj)
+		case "fieldUserDefinedScalar":
+			out.Values[i] = ec._TypeExample_fieldUserDefinedScalar(ctx, field, obj)
 			if out.Values[i] == graphql.Null {
 				atomic.AddUint32(&invalids, 1)
 			}
-		case "field_nullable_user_defined_scalar":
-			out.Values[i] = ec._TypeExample_field_nullable_user_defined_scalar(ctx, field, obj)
-		case "field_user_defined_enum":
-			out.Values[i] = ec._TypeExample_field_user_defined_enum(ctx, field, obj)
+		case "fieldNullableUserDefinedScalar":
+			out.Values[i] = ec._TypeExample_fieldNullableUserDefinedScalar(ctx, field, obj)
+		case "fieldUserDefinedEnum":
+			out.Values[i] = ec._TypeExample_fieldUserDefinedEnum(ctx, field, obj)
 			if out.Values[i] == graphql.Null {
 				atomic.AddUint32(&invalids, 1)
 			}
-		case "field_struct":
-			out.Values[i] = ec._TypeExample_field_struct(ctx, field, obj)
+		case "fieldStruct":
+			out.Values[i] = ec._TypeExample_fieldStruct(ctx, field, obj)
 			if out.Values[i] == graphql.Null {
 				atomic.AddUint32(&invalids, 1)
 			}
-		case "field_nullable_complex":
-			out.Values[i] = ec._TypeExample_field_nullable_complex(ctx, field, obj)
-		case "field_interface":
-			out.Values[i] = ec._TypeExample_field_interface(ctx, field, obj)
+		case "fieldNullableComplex":
+			out.Values[i] = ec._TypeExample_fieldNullableComplex(ctx, field, obj)
+		case "fieldInterface":
+			out.Values[i] = ec._TypeExample_fieldInterface(ctx, field, obj)
 			if out.Values[i] == graphql.Null {
 				atomic.AddUint32(&invalids, 1)
 			}
-		case "field_array":
-			out.Values[i] = ec._TypeExample_field_array(ctx, field, obj)
-		case "field_nullable_element_array":
-			out.Values[i] = ec._TypeExample_field_nullable_element_array(ctx, field, obj)
-		case "field_array_of_array":
-			out.Values[i] = ec._TypeExample_field_array_of_array(ctx, field, obj)
+		case "fieldArray":
+			out.Values[i] = ec._TypeExample_fieldArray(ctx, field, obj)
+		case "fieldNullableElementArray":
+			out.Values[i] = ec._TypeExample_fieldNullableElementArray(ctx, field, obj)
+		case "fieldArrayOfArray":
+			out.Values[i] = ec._TypeExample_fieldArrayOfArray(ctx, field, obj)
 		case "fieldWithTag":
 			out.Values[i] = ec._TypeExample_fieldWithTag(ctx, field, obj)
-		case "embedded_field":
-			out.Values[i] = ec._TypeExample_embedded_field(ctx, field, obj)
+		case "embeddedField":
+			out.Values[i] = ec._TypeExample_embeddedField(ctx, field, obj)
 			if out.Values[i] == graphql.Null {
 				atomic.AddUint32(&invalids, 1)
 			}
-		case "method_with_context":
+		case "methodWithContext":
 			field := field
 			out.Concurrently(i, func() (res graphql.Marshaler) {
 				defer func() {
@@ -3741,14 +3741,14 @@ func (ec *executionContext) _TypeExample(ctx context.Context, sel ast.SelectionS
 						ec.Error(ctx, ec.Recover(ctx, r))
 					}
 				}()
-				res = ec._TypeExample_method_with_context(ctx, field, obj)
+				res = ec._TypeExample_methodWithContext(ctx, field, obj)
 				return res
 			})
-		case "method_without_context":
-			out.Values[i] = ec._TypeExample_method_without_context(ctx, field, obj)
-		case "method_without_error":
-			out.Values[i] = ec._TypeExample_method_without_error(ctx, field, obj)
-		case "method_with_alias":
+		case "methodWithoutContext":
+			out.Values[i] = ec._TypeExample_methodWithoutContext(ctx, field, obj)
+		case "methodWithoutError":
+			out.Values[i] = ec._TypeExample_methodWithoutError(ctx, field, obj)
+		case "methodWithAlias":
 			field := field
 			out.Concurrently(i, func() (res graphql.Marshaler) {
 				defer func() {
@@ -3756,10 +3756,10 @@ func (ec *executionContext) _TypeExample(ctx context.Context, sel ast.SelectionS
 						ec.Error(ctx, ec.Recover(ctx, r))
 					}
 				}()
-				res = ec._TypeExample_method_with_alias(ctx, field, obj)
+				res = ec._TypeExample_methodWithAlias(ctx, field, obj)
 				return res
 			})
-		case "method_with_result":
+		case "methodWithResult":
 			field := field
 			out.Concurrently(i, func() (res graphql.Marshaler) {
 				defer func() {
@@ -3767,7 +3767,7 @@ func (ec *executionContext) _TypeExample(ctx context.Context, sel ast.SelectionS
 						ec.Error(ctx, ec.Recover(ctx, r))
 					}
 				}()
-				res = ec._TypeExample_method_with_result(ctx, field, obj)
+				res = ec._TypeExample_methodWithResult(ctx, field, obj)
 				return res
 			})
 		default:

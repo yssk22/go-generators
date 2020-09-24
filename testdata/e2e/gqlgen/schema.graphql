@@ -6,64 +6,64 @@ directive @goModel(
 
 
 type Query @goModel(model: "github.com/yssk22/go-generators/testdata/e2e/models.Query") {
-  query_example: TypeExample
+  queryExample: TypeExample
 }
 
 type Mutation @goModel(model: "github.com/yssk22/go-generators/testdata/e2e/models.Mutation") {
-  example_mutation: MutationExample
+  exampleMutation: MutationExample
 }
 
 type TypeExample @goModel(model: "github.com/yssk22/go-generators/testdata/e2e/models.TypeExample") {
   id: ID!
-  field_string: String!
-  field_nullable_srinrg: String
-  field_int: Int!
-  field_nullable_int: Int
-  field_float: Float!
-  field_nullable_float: Float
-  field_boolean: Boolean!
-  field_nullable_boolean: Boolean
-  field_map: Map!
-  field_user_defined_scalar: YesNo!
-  field_nullable_user_defined_scalar: YesNo
-  field_user_defined_enum: MyEnum!
-  field_struct: ComplexField!
-  field_nullable_complex: ComplexField
-  field_interface: ComplexInterface!
-  field_array: [String!]
-  field_nullable_element_array: [String]
-  field_array_of_array: [[[String]]]
+  fieldString: String!
+  fieldNullableSrinrg: String
+  fieldInt: Int!
+  fieldNullableInt: Int
+  fieldFloat: Float!
+  fieldNullableFloat: Float
+  fieldBoolean: Boolean!
+  fieldNullableBoolean: Boolean
+  fieldMap: Map!
+  fieldUserDefinedScalar: YesNo!
+  fieldNullableUserDefinedScalar: YesNo
+  fieldUserDefinedEnum: MyEnum!
+  fieldStruct: ComplexField!
+  fieldNullableComplex: ComplexField
+  fieldInterface: ComplexInterface!
+  fieldArray: [String!]
+  fieldNullableElementArray: [String]
+  fieldArrayOfArray: [[[String]]]
   fieldWithTag: String
-  embedded_field: EmbeddedField!
-  method_with_context(
+  embeddedField: EmbeddedField!
+  methodWithContext(
     complexQueryParams: ComplexParamsInput
   ): ComplexResult
-  method_without_context(
+  methodWithoutContext(
     complexQueryParams: ComplexParamsInput
   ): ComplexResult
-  method_without_error(
+  methodWithoutError(
     complexQueryParams: ComplexParamsInput
   ): ComplexResult
-  method_with_alias(
+  methodWithAlias(
     complexQueryParams: ComplexParamsInput
   ): ComplexResult
-  method_with_result(
+  methodWithResult(
     complexQueryParams: ComplexResultInput
   ): ComplexResult
 }
 
 type MutationExample @goModel(model: "github.com/yssk22/go-generators/testdata/e2e/models.MutationExample") {
-  method_with_context(
+  methodWithContext(
     complexQueryParams: ComplexParamsInput
   ): ComplexResult
-  method_without_context(
+  methodWithoutContext(
     complexQueryParams: ComplexParamsInput
   ): ComplexResult
-  method_with_custom_scalar_and_enum(
+  methodWithCustomScalarAndEnum(
     y: YesNo!,
     v: MyEnum!
   ): ComplexResult
-  method_with_context_alias(
+  methodWithContextAlias(
     complexQueryParams: ComplexParamsInput
   ): ComplexResult
 }
@@ -78,41 +78,41 @@ enum MyEnum @goModel(model: "github.com/yssk22/go-generators/testdata/e2e/models
 }
 
 type ComplexField @goModel(model: "github.com/yssk22/go-generators/testdata/e2e/models.ComplexField") {
-  field_string: String!
-  field_nullable_srinrg: String
+  fieldString: String!
+  fieldNullableSrinrg: String
 }
 
 type ComplexInterface @goModel(model: "github.com/yssk22/go-generators/testdata/e2e/models.ComplexInterface") {
-  field_like_method: [String!]
-  method_to_call(
+  fieldLikeMethod: [String!]
+  methodToCall(
     aa: String!
   ): ComplexField!
 }
 
 type EmbeddedField @goModel(model: "github.com/yssk22/go-generators/testdata/e2e/models.EmbeddedField") {
-  embedded_field_string: String!
-  embedded_field_nullable_srinrg: String
+  embeddedFieldString: String!
+  embeddedFieldNullableSrinrg: String
 }
 
 type ComplexResult @goModel(model: "github.com/yssk22/go-generators/testdata/e2e/models.ComplexResult") {
-  field_string: String!
-  field_nullable_srinrg: String
+  fieldString: String!
+  fieldNullableSrinrg: String
 }
 
 input ComplexParamsInput @goModel(model: "github.com/yssk22/go-generators/testdata/e2e/models.ComplexParams") {
-  field_string: String!
-  field_nullable_srinrg: String
-  field_struct: NestedComplexParamsInput!
+  fieldString: String!
+  fieldNullableSrinrg: String
+  fieldStruct: NestedComplexParamsInput!
 }
 
 input ComplexResultInput @goModel(model: "github.com/yssk22/go-generators/testdata/e2e/models.ComplexResult") {
-  field_string: String!
-  field_nullable_srinrg: String
+  fieldString: String!
+  fieldNullableSrinrg: String
 }
 
 input NestedComplexParamsInput @goModel(model: "github.com/yssk22/go-generators/testdata/e2e/models.NestedComplexParams") {
   field: String!
-  field_struct: DeepNestedComplexParamsInput!
+  fieldStruct: DeepNestedComplexParamsInput!
 }
 
 input DeepNestedComplexParamsInput @goModel(model: "github.com/yssk22/go-generators/testdata/e2e/models.DeepNestedComplexParams") {
