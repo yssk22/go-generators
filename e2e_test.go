@@ -54,17 +54,17 @@ func TestE2E(t *testing.T) {
 
 	// now request a query and make sure the server can respond to it.
 	query := `{
-query_example {
-	field_string
-	field_user_defined_scalar
-	field_user_defined_enum
+queryExample {
+	fieldString
+	fieldUserDefinedScalar
+	fieldUserDefinedEnum
   }
 }`
 	expect := map[string]interface{}{
-		"query_example": map[string]interface{}{
-			"field_string":              "strValue",
-			"field_user_defined_scalar": "no",
-			"field_user_defined_enum":   "ValueA",
+		"queryExample": map[string]interface{}{
+			"fieldString":            "strValue",
+			"fieldUserDefinedScalar": "no",
+			"fieldUserDefinedEnum":   "ValueA",
 		},
 	}
 	requestBody, _ := json.Marshal(map[string]interface{}{

@@ -21,14 +21,16 @@ const (
 )
 
 type generator struct {
-	Dir       string // target directory
-	RunGQLGen bool   // not only generate schema but also generate generate gqlgen code
+	Dir          string // target directory
+	RunGQLGen    bool   // not only generate schema but also generate generate gqlgen code
+	UseSnakeCase bool
 }
 
 func NewGenerator(dir string) graphql.Generator {
 	return &generator{
-		Dir:       dir,
-		RunGQLGen: true,
+		Dir:          dir,
+		RunGQLGen:    true,
+		UseSnakeCase: false,
 	}
 }
 

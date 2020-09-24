@@ -333,7 +333,7 @@ func getGraphQLObjectFromField(field *types.Var, helper TypeHelper) (*GraphQLObj
 		t = BasicTypeID
 	}
 	return &GraphQLObjectField{
-		Name:            hh.ToSnakeCase(field.Name()),
+		Name:            hh.ToLowerCamleCase(field.Name()),
 		Type:            t,
 		Nullable:        nullable,
 		IsArray:         isArray,
@@ -369,7 +369,7 @@ func getGraphQLMethodFromFunc(fun *types.Func, helper TypeHelper) (*GraphQLObjec
 			returnValue.Type = BasicTypeID
 		}
 		return &GraphQLObjectMethod{
-			Name:        hh.ToSnakeCase(fun.Name()),
+			Name:        hh.ToLowerCamleCase(fun.Name()),
 			Parameters:  arguments,
 			ReturnValue: *returnValue,
 		}, dependencies, nil
@@ -403,7 +403,7 @@ func getGraphQLMethodFromFunc(fun *types.Func, helper TypeHelper) (*GraphQLObjec
 		returnValue.Type = BasicTypeID
 	}
 	return &GraphQLObjectMethod{
-		Name:        hh.ToSnakeCase(fun.Name()),
+		Name:        hh.ToLowerCamleCase(fun.Name()),
 		Parameters:  arguments,
 		ReturnValue: *returnValue,
 	}, dependencies, nil
