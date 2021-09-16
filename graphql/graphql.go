@@ -58,6 +58,7 @@ type GraphQLObjectField struct {
 	IsArray         bool
 	ElementNullable bool
 	NestDepth       int
+	IsCustomType    bool
 }
 
 // GraphQLObjectMethod represents a method in GraphQLType

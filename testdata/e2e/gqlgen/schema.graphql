@@ -59,10 +59,6 @@ type MutationExample @goModel(model: "github.com/yssk22/go-generators/testdata/e
   methodWithoutContext(
     complexQueryParams: ComplexParamsInput
   ): ComplexResult
-  methodWithCustomScalarAndEnum(
-    y: YesNo!,
-    v: MyEnum!
-  ): ComplexResult
   methodWithContextAlias(
     complexQueryParams: ComplexParamsInput
   ): ComplexResult
@@ -102,6 +98,10 @@ type ComplexResult @goModel(model: "github.com/yssk22/go-generators/testdata/e2e
 input ComplexParamsInput @goModel(model: "github.com/yssk22/go-generators/testdata/e2e/models.ComplexParams") {
   fieldString: String!
   fieldNullableSrinrg: String
+  fieldUserDefinedScalar: YesNo!
+  fieldNullUserDefinedScalar: YesNo
+  fieldEnum: MyEnum!
+  fieldNullableEnum: MyEnum
   fieldStruct: NestedComplexParamsInput!
 }
 
@@ -113,6 +113,10 @@ input ComplexResultInput @goModel(model: "github.com/yssk22/go-generators/testda
 input NestedComplexParamsInput @goModel(model: "github.com/yssk22/go-generators/testdata/e2e/models.NestedComplexParams") {
   field: String!
   fieldStruct: DeepNestedComplexParamsInput!
+  fieldUserDefinedScalar: YesNo!
+  fieldNullUserDefinedScalar: YesNo
+  fieldEnum: MyEnum!
+  fieldNullableEnum: MyEnum
 }
 
 input DeepNestedComplexParamsInput @goModel(model: "github.com/yssk22/go-generators/testdata/e2e/models.DeepNestedComplexParams") {
