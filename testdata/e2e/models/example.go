@@ -140,14 +140,22 @@ type EmbeddedField struct {
 
 // input ComplexQueryParmas { ... }
 type ComplexParams struct {
-	FieldString         string
-	FieldNullableSrinrg *string
-	FieldStruct         NestedComplexParams
+	FieldString                string
+	FieldNullableSrinrg        *string
+	FieldUserDefinedScalar     YesNo
+	FieldNullUserDefinedScalar *YesNo
+	FieldEnum                  MyEnum
+	FieldNullableEnum          *MyEnum
+	FieldStruct                NestedComplexParams
 }
 
 type NestedComplexParams struct {
-	Field       string
-	FieldStruct DeepNestedComplexParams
+	Field                      string
+	FieldStruct                DeepNestedComplexParams
+	FieldUserDefinedScalar     YesNo
+	FieldNullUserDefinedScalar *YesNo
+	FieldEnum                  MyEnum
+	FieldNullableEnum          *MyEnum
 }
 
 type DeepNestedComplexParams struct {
@@ -211,9 +219,9 @@ func (s *MutationExample) MethodWithoutContext(complexQueryParams *ComplexParams
 	return nil, nil
 }
 
-func (s *MutationExample) MethodWithCustomScalarAndEnum(y YesNo, v MyEnum) (*ComplexResult, error) {
-	return nil, nil
-}
+// func (s *MutationExample) MethodWithCustomScalarAndEnum(y YesNo, v MyEnum) (*ComplexResult, error) {
+// 	return nil, nil
+// }
 
 func (s *MutationExample) MethodWithContextAlias(ctx MyContext, complexQueryParams *ComplexParams) (*ComplexResult, error) {
 	return nil, nil

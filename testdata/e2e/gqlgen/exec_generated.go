@@ -71,10 +71,9 @@ type ComplexityRoot struct {
 	}
 
 	MutationExample struct {
-		MethodWithContext             func(childComplexity int, complexQueryParams *models.ComplexParams) int
-		MethodWithContextAlias        func(childComplexity int, complexQueryParams *models.ComplexParams) int
-		MethodWithCustomScalarAndEnum func(childComplexity int, y models.YesNo, v models.MyEnum) int
-		MethodWithoutContext          func(childComplexity int, complexQueryParams *models.ComplexParams) int
+		MethodWithContext      func(childComplexity int, complexQueryParams *models.ComplexParams) int
+		MethodWithContextAlias func(childComplexity int, complexQueryParams *models.ComplexParams) int
+		MethodWithoutContext   func(childComplexity int, complexQueryParams *models.ComplexParams) int
 	}
 
 	Query struct {
@@ -224,18 +223,6 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.MutationExample.MethodWithContextAlias(childComplexity, args["complexQueryParams"].(*models.ComplexParams)), true
-
-	case "MutationExample.methodWithCustomScalarAndEnum":
-		if e.complexity.MutationExample.MethodWithCustomScalarAndEnum == nil {
-			break
-		}
-
-		args, err := ec.field_MutationExample_methodWithCustomScalarAndEnum_args(context.TODO(), rawArgs)
-		if err != nil {
-			return 0, false
-		}
-
-		return e.complexity.MutationExample.MethodWithCustomScalarAndEnum(childComplexity, args["y"].(models.YesNo), args["v"].(models.MyEnum)), true
 
 	case "MutationExample.methodWithoutContext":
 		if e.complexity.MutationExample.MethodWithoutContext == nil {
@@ -588,10 +575,6 @@ type MutationExample @goModel(model: "github.com/yssk22/go-generators/testdata/e
   methodWithoutContext(
     complexQueryParams: ComplexParamsInput
   ): ComplexResult
-  methodWithCustomScalarAndEnum(
-    y: YesNo!,
-    v: MyEnum!
-  ): ComplexResult
   methodWithContextAlias(
     complexQueryParams: ComplexParamsInput
   ): ComplexResult
@@ -631,6 +614,10 @@ type ComplexResult @goModel(model: "github.com/yssk22/go-generators/testdata/e2e
 input ComplexParamsInput @goModel(model: "github.com/yssk22/go-generators/testdata/e2e/models.ComplexParams") {
   fieldString: String!
   fieldNullableSrinrg: String
+  fieldUserDefinedScalar: YesNo!
+  fieldNullUserDefinedScalar: YesNo
+  fieldEnum: MyEnum!
+  fieldNullableEnum: MyEnum
   fieldStruct: NestedComplexParamsInput!
 }
 
@@ -642,6 +629,10 @@ input ComplexResultInput @goModel(model: "github.com/yssk22/go-generators/testda
 input NestedComplexParamsInput @goModel(model: "github.com/yssk22/go-generators/testdata/e2e/models.NestedComplexParams") {
   field: String!
   fieldStruct: DeepNestedComplexParamsInput!
+  fieldUserDefinedScalar: YesNo!
+  fieldNullUserDefinedScalar: YesNo
+  fieldEnum: MyEnum!
+  fieldNullableEnum: MyEnum
 }
 
 input DeepNestedComplexParamsInput @goModel(model: "github.com/yssk22/go-generators/testdata/e2e/models.DeepNestedComplexParams") {
@@ -742,30 +733,6 @@ func (ec *executionContext) field_MutationExample_methodWithContext_args(ctx con
 		}
 	}
 	args["complexQueryParams"] = arg0
-	return args, nil
-}
-
-func (ec *executionContext) field_MutationExample_methodWithCustomScalarAndEnum_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
-	var err error
-	args := map[string]interface{}{}
-	var arg0 models.YesNo
-	if tmp, ok := rawArgs["y"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("y"))
-		arg0, err = ec.unmarshalNYesNo2githubᚗcomᚋyssk22ᚋgoᚑgeneratorsᚋtestdataᚋe2eᚋmodelsᚐYesNo(ctx, tmp)
-		if err != nil {
-			return nil, err
-		}
-	}
-	args["y"] = arg0
-	var arg1 models.MyEnum
-	if tmp, ok := rawArgs["v"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("v"))
-		arg1, err = ec.unmarshalNMyEnum2githubᚗcomᚋyssk22ᚋgoᚑgeneratorsᚋtestdataᚋe2eᚋmodelsᚐMyEnum(ctx, tmp)
-		if err != nil {
-			return nil, err
-		}
-	}
-	args["v"] = arg1
 	return args, nil
 }
 
@@ -1296,42 +1263,6 @@ func (ec *executionContext) _MutationExample_methodWithoutContext(ctx context.Co
 	resTmp := ec._fieldMiddleware(ctx, obj, func(rctx context.Context) (interface{}, error) {
 		ctx = rctx // use context from middleware stack in children
 		return obj.MethodWithoutContext(args["complexQueryParams"].(*models.ComplexParams))
-	})
-
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*models.ComplexResult)
-	fc.Result = res
-	return ec.marshalOComplexResult2ᚖgithubᚗcomᚋyssk22ᚋgoᚑgeneratorsᚋtestdataᚋe2eᚋmodelsᚐComplexResult(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) _MutationExample_methodWithCustomScalarAndEnum(ctx context.Context, field graphql.CollectedField, obj *models.MutationExample) (ret graphql.Marshaler) {
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	fc := &graphql.FieldContext{
-		Object:     "MutationExample",
-		Field:      field,
-		Args:       nil,
-		IsMethod:   true,
-		IsResolver: false,
-	}
-
-	ctx = graphql.WithFieldContext(ctx, fc)
-	rawArgs := field.ArgumentMap(ec.Variables)
-	args, err := ec.field_MutationExample_methodWithCustomScalarAndEnum_args(ctx, rawArgs)
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	fc.Args = args
-	resTmp := ec._fieldMiddleware(ctx, obj, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.MethodWithCustomScalarAndEnum(args["y"].(models.YesNo), args["v"].(models.MyEnum))
 	})
 
 	if resTmp == nil {
@@ -3307,6 +3238,38 @@ func (ec *executionContext) unmarshalInputComplexParamsInput(ctx context.Context
 			if err != nil {
 				return it, err
 			}
+		case "fieldUserDefinedScalar":
+			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("fieldUserDefinedScalar"))
+			it.FieldUserDefinedScalar, err = ec.unmarshalNYesNo2githubᚗcomᚋyssk22ᚋgoᚑgeneratorsᚋtestdataᚋe2eᚋmodelsᚐYesNo(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "fieldNullUserDefinedScalar":
+			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("fieldNullUserDefinedScalar"))
+			it.FieldNullUserDefinedScalar, err = ec.unmarshalOYesNo2ᚖgithubᚗcomᚋyssk22ᚋgoᚑgeneratorsᚋtestdataᚋe2eᚋmodelsᚐYesNo(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "fieldEnum":
+			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("fieldEnum"))
+			it.FieldEnum, err = ec.unmarshalNMyEnum2githubᚗcomᚋyssk22ᚋgoᚑgeneratorsᚋtestdataᚋe2eᚋmodelsᚐMyEnum(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "fieldNullableEnum":
+			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("fieldNullableEnum"))
+			it.FieldNullableEnum, err = ec.unmarshalOMyEnum2ᚖgithubᚗcomᚋyssk22ᚋgoᚑgeneratorsᚋtestdataᚋe2eᚋmodelsᚐMyEnum(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "fieldStruct":
 			var err error
 
@@ -3388,6 +3351,38 @@ func (ec *executionContext) unmarshalInputNestedComplexParamsInput(ctx context.C
 
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("fieldStruct"))
 			it.FieldStruct, err = ec.unmarshalNDeepNestedComplexParamsInput2githubᚗcomᚋyssk22ᚋgoᚑgeneratorsᚋtestdataᚋe2eᚋmodelsᚐDeepNestedComplexParams(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "fieldUserDefinedScalar":
+			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("fieldUserDefinedScalar"))
+			it.FieldUserDefinedScalar, err = ec.unmarshalNYesNo2githubᚗcomᚋyssk22ᚋgoᚑgeneratorsᚋtestdataᚋe2eᚋmodelsᚐYesNo(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "fieldNullUserDefinedScalar":
+			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("fieldNullUserDefinedScalar"))
+			it.FieldNullUserDefinedScalar, err = ec.unmarshalOYesNo2ᚖgithubᚗcomᚋyssk22ᚋgoᚑgeneratorsᚋtestdataᚋe2eᚋmodelsᚐYesNo(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "fieldEnum":
+			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("fieldEnum"))
+			it.FieldEnum, err = ec.unmarshalNMyEnum2githubᚗcomᚋyssk22ᚋgoᚑgeneratorsᚋtestdataᚋe2eᚋmodelsᚐMyEnum(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "fieldNullableEnum":
+			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("fieldNullableEnum"))
+			it.FieldNullableEnum, err = ec.unmarshalOMyEnum2ᚖgithubᚗcomᚋyssk22ᚋgoᚑgeneratorsᚋtestdataᚋe2eᚋmodelsᚐMyEnum(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -3582,8 +3577,6 @@ func (ec *executionContext) _MutationExample(ctx context.Context, sel ast.Select
 			})
 		case "methodWithoutContext":
 			out.Values[i] = ec._MutationExample_methodWithoutContext(ctx, field, obj)
-		case "methodWithCustomScalarAndEnum":
-			out.Values[i] = ec._MutationExample_methodWithCustomScalarAndEnum(ctx, field, obj)
 		case "methodWithContextAlias":
 			field := field
 			out.Concurrently(i, func() (res graphql.Marshaler) {
@@ -4488,6 +4481,22 @@ func (ec *executionContext) marshalOMutationExample2ᚖgithubᚗcomᚋyssk22ᚋg
 		return graphql.Null
 	}
 	return ec._MutationExample(ctx, sel, v)
+}
+
+func (ec *executionContext) unmarshalOMyEnum2ᚖgithubᚗcomᚋyssk22ᚋgoᚑgeneratorsᚋtestdataᚋe2eᚋmodelsᚐMyEnum(ctx context.Context, v interface{}) (*models.MyEnum, error) {
+	if v == nil {
+		return nil, nil
+	}
+	var res = new(models.MyEnum)
+	err := res.UnmarshalGQL(v)
+	return res, graphql.ErrorOnPath(ctx, err)
+}
+
+func (ec *executionContext) marshalOMyEnum2ᚖgithubᚗcomᚋyssk22ᚋgoᚑgeneratorsᚋtestdataᚋe2eᚋmodelsᚐMyEnum(ctx context.Context, sel ast.SelectionSet, v *models.MyEnum) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return v
 }
 
 func (ec *executionContext) unmarshalOString2string(ctx context.Context, v interface{}) (string, error) {

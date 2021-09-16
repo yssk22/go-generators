@@ -12,6 +12,7 @@ import (
 // it is a source of truth for the corresponding GraphQL object
 type Dependency interface {
 	ToGraphQLObject(helper TypeHelper) (*GraphQLObject, []Dependency, error)
+	IsCustomType() bool
 }
 
 type rootDependencyType string
@@ -38,6 +39,10 @@ func (d *InputDependency) String() string {
 	return fmt.Sprintf("(input)%s", d.inner)
 }
 
+func (d *InputDependency) IsCustomType() bool {
+	return d.inner.IsCustomType()
+}
+
 func (d *InputDependency) ToGraphQLObject(helper TypeHelper) (*GraphQLObject, []Dependency, error) {
 	obj, deps, err := d.inner.ToGraphQLObject(helper)
 	var ideps []Dependency
@@ -48,7 +53,7 @@ func (d *InputDependency) ToGraphQLObject(helper TypeHelper) (*GraphQLObject, []
 		obj.ObjectType = GraphQLObjectTypeInput
 		obj.Name = fmt.Sprintf("%sInput", obj.Name)
 		for i := range obj.Fields {
-			if IsCustomType(obj.Fields[i].Type) {
+			if obj.Fields[i].IsCustomType {
 				obj.Fields[i].Type = fmt.Sprintf("%sInput", obj.Fields[i].Type)
 			}
 		}
@@ -73,6 +78,10 @@ type RootDependency struct {
 
 func (d *RootDependency) String() string {
 	return d.namedRef.String()
+}
+
+func (d *RootDependency) IsCustomType() bool {
+	return false
 }
 
 func (d *RootDependency) ToGraphQLObject(helper TypeHelper) (*GraphQLObject, []Dependency, error) {
@@ -150,6 +159,10 @@ type StructDependency struct {
 
 func (d *StructDependency) String() string {
 	return d.namedRef.String()
+}
+
+func (d *StructDependency) IsCustomType() bool {
+	return true
 }
 
 // ToGraphQLObject returns a corresponding &GraphQLObject and extract new dependencies found in the types.
@@ -238,6 +251,10 @@ func (d *InterfaceDependency) String() string {
 	return d.namedRef.String()
 }
 
+func (d *InterfaceDependency) IsCustomType() bool {
+	return true
+}
+
 // ToGraphQLObject returns a corresponding &GraphQLObject and extract new dependencies found in the types.
 func (d *InterfaceDependency) ToGraphQLObject(helper TypeHelper) (*GraphQLObject, []Dependency, error) {
 	var dependencies []Dependency
@@ -282,6 +299,10 @@ type ScalarDependency struct {
 
 func (d *ScalarDependency) String() string {
 	return d.scalerType.String()
+}
+
+func (d *ScalarDependency) IsCustomType() bool {
+	return false
 }
 
 func (d *ScalarDependency) ToGraphQLObject(helper TypeHelper) (*GraphQLObject, []Dependency, error) {
@@ -339,6 +360,7 @@ func getGraphQLObjectFromField(field *types.Var, helper TypeHelper) (*GraphQLObj
 		IsArray:         isArray,
 		ElementNullable: elementNullable,
 		NestDepth:       nestDepth,
+		IsCustomType:    dep != nil && dep.IsCustomType(),
 	}, dep, nil
 }
 
@@ -388,11 +410,8 @@ func getGraphQLMethodFromFunc(fun *types.Func, helper TypeHelper) (*GraphQLObjec
 			obj.Name = fmt.Sprintf("param%d", i)
 		}
 		obj.Name = params.At(i).Name() // use the original name
-		if IsCustomType(obj.Type) && dep != nil {
-			// if dependecy is Sclar, then no "Input" suffix is needed.
-			if _, ok := dep.(*ScalarDependency); !ok {
-				obj.Type = fmt.Sprintf("%sInput", obj.Type)
-			}
+		if obj.IsCustomType {
+			obj.Type = fmt.Sprintf("%sInput", obj.Type)
 		}
 		arguments = append(arguments, *obj)
 		if dep != nil {
