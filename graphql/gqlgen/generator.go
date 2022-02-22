@@ -137,14 +137,18 @@ func gqlGenObjectToString(obj graphql.GraphQLObject) string {
 	// even thought obj.ObjectType == "interface", we'll generate it as type since
 	// gqlgen doesn't handle interface without implementator type.
 	objectType := obj.ObjectType
-	if objectType == graphql.GraphQLObjectTypeInterface {
-		objectType = graphql.GraphQLObjectTypeType
+	// if objectType == graphql.GraphQLObjectTypeInterface {
+	// 	objectType = graphql.GraphQLObjectTypeType
+	// }
+	var implements = ""
+	if obj.IsNode {
+		implements = " implements Node"
 	}
 	var lines []string
 	if objectType == graphql.GraphQLObjectTypeEnum {
-		lines = append(lines, fmt.Sprintf("%s %s%s {", objectType, obj.Name, goModelDerective))
+		lines = append(lines, fmt.Sprintf("%s %s%s%s {", objectType, obj.Name, implements, goModelDerective))
 	} else {
-		lines = append(lines, fmt.Sprintf("%s %s%s {", objectType, obj.Name, goModelDerective))
+		lines = append(lines, fmt.Sprintf("%s %s%s%s {", objectType, obj.Name, implements, goModelDerective))
 	}
 	for _, v := range obj.Values {
 		lines = append(lines, fmt.Sprintf(

@@ -182,8 +182,15 @@ func (d *StructDependency) ToGraphQLObject(helper TypeHelper) (*GraphQLObject, [
 	if deps != nil {
 		dependencies = append(dependencies, deps...)
 	}
+	var isNode = false
+	for _, m := range methods {
+		if m.Name == "id" {
+			isNode = true
+		}
+	}
 	gqlObject := &GraphQLObject{
 		Name:       d.namedRef.Obj().Name(),
+		IsNode:     isNode,
 		GoModel:    d.namedRef.String(),
 		ObjectType: GraphQLObjectTypeType,
 		Fields:     fields,
@@ -413,6 +420,9 @@ func getGraphQLMethodFromFunc(fun *types.Func, helper TypeHelper) (*GraphQLObjec
 		if obj.IsCustomType {
 			obj.Type = fmt.Sprintf("%sInput", obj.Type)
 		}
+		if obj.Name == "id" {
+			obj.Type = "ID"
+		}
 		arguments = append(arguments, *obj)
 		if dep != nil {
 			dependencies = append(dependencies, &InputDependency{inner: dep})
@@ -435,11 +445,19 @@ func normalizeFieldType(t types.Type) (tt types.Type, nullable bool, isArray boo
 	elementNullable = false
 	nestDepth = 0
 	switch t.(type) {
+	case *types.Named:
+		if _, ok := t.Underlying().(*types.Interface); ok {
+			nullable = true
+		}
+		return
 	case *types.Pointer:
 		tt = t.(*types.Pointer).Elem()
 		nullable = true
 		isArray = false
 		elementNullable = false
+		return
+	case *types.Interface:
+		nullable = true
 		return
 	case *types.Slice:
 		isArray = true
