@@ -6,6 +6,7 @@ import (
 	"bytes"
 	"context"
 	"errors"
+	"fmt"
 	"strconv"
 	"sync"
 	"sync/atomic"
@@ -51,11 +52,6 @@ type ComplexityRoot struct {
 		FieldString         func(childComplexity int) int
 	}
 
-	ComplexInterface struct {
-		FieldLikeMethod func(childComplexity int) int
-		MethodToCall    func(childComplexity int, aa string) int
-	}
-
 	ComplexResult struct {
 		FieldNullableSrinrg func(childComplexity int) int
 		FieldString         func(childComplexity int) int
@@ -77,6 +73,7 @@ type ComplexityRoot struct {
 	}
 
 	Query struct {
+		Node         func(childComplexity int, id string) int
 		QueryExample func(childComplexity int) int
 	}
 
@@ -114,6 +111,7 @@ type MutationResolver interface {
 	ExampleMutation(ctx context.Context) (*models.MutationExample, error)
 }
 type QueryResolver interface {
+	Node(ctx context.Context, id string) (models.Node, error)
 	QueryExample(ctx context.Context) (*models.TypeExample, error)
 }
 
@@ -145,25 +143,6 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.ComplexField.FieldString(childComplexity), true
-
-	case "ComplexInterface.fieldLikeMethod":
-		if e.complexity.ComplexInterface.FieldLikeMethod == nil {
-			break
-		}
-
-		return e.complexity.ComplexInterface.FieldLikeMethod(childComplexity), true
-
-	case "ComplexInterface.methodToCall":
-		if e.complexity.ComplexInterface.MethodToCall == nil {
-			break
-		}
-
-		args, err := ec.field_ComplexInterface_methodToCall_args(context.TODO(), rawArgs)
-		if err != nil {
-			return 0, false
-		}
-
-		return e.complexity.ComplexInterface.MethodToCall(childComplexity, args["aa"].(string)), true
 
 	case "ComplexResult.fieldNullableSrinrg":
 		if e.complexity.ComplexResult.FieldNullableSrinrg == nil {
@@ -235,6 +214,18 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.MutationExample.MethodWithoutContext(childComplexity, args["complexQueryParams"].(*models.ComplexParams)), true
+
+	case "Query.node":
+		if e.complexity.Query.Node == nil {
+			break
+		}
+
+		args, err := ec.field_Query_node_args(context.TODO(), rawArgs)
+		if err != nil {
+			return 0, false
+		}
+
+		return e.complexity.Query.Node(childComplexity, args["id"].(string)), true
 
 	case "Query.queryExample":
 		if e.complexity.Query.QueryExample == nil {
@@ -522,11 +513,18 @@ directive @goModel(
 
 
 type Query @goModel(model: "github.com/yssk22/go-generators/testdata/e2e/models.Query") {
+  node(
+    id: ID!
+  ): Node
   queryExample: TypeExample
 }
 
 type Mutation @goModel(model: "github.com/yssk22/go-generators/testdata/e2e/models.Mutation") {
   exampleMutation: MutationExample
+}
+
+interface Node @goModel(model: "github.com/yssk22/go-generators/testdata/e2e/models.Node") {
+  id: ID!
 }
 
 type TypeExample @goModel(model: "github.com/yssk22/go-generators/testdata/e2e/models.TypeExample") {
@@ -545,7 +543,7 @@ type TypeExample @goModel(model: "github.com/yssk22/go-generators/testdata/e2e/m
   fieldUserDefinedEnum: MyEnum!
   fieldStruct: ComplexField!
   fieldNullableComplex: ComplexField
-  fieldInterface: ComplexInterface!
+  fieldInterface: ComplexInterface
   fieldArray: [String!]
   fieldNullableElementArray: [String]
   fieldArrayOfArray: [[[String]]]
@@ -594,7 +592,7 @@ type ComplexField @goModel(model: "github.com/yssk22/go-generators/testdata/e2e/
   fieldNullableSrinrg: String
 }
 
-type ComplexInterface @goModel(model: "github.com/yssk22/go-generators/testdata/e2e/models.ComplexInterface") {
+interface ComplexInterface @goModel(model: "github.com/yssk22/go-generators/testdata/e2e/models.ComplexInterface") {
   fieldLikeMethod: [String!]
   methodToCall(
     aa: String!
@@ -691,21 +689,6 @@ func (ec *executionContext) dir_skip_args(ctx context.Context, rawArgs map[strin
 	return args, nil
 }
 
-func (ec *executionContext) field_ComplexInterface_methodToCall_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
-	var err error
-	args := map[string]interface{}{}
-	var arg0 string
-	if tmp, ok := rawArgs["aa"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("aa"))
-		arg0, err = ec.unmarshalNString2string(ctx, tmp)
-		if err != nil {
-			return nil, err
-		}
-	}
-	args["aa"] = arg0
-	return args, nil
-}
-
 func (ec *executionContext) field_MutationExample_methodWithContextAlias_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
 	var err error
 	args := map[string]interface{}{}
@@ -763,6 +746,21 @@ func (ec *executionContext) field_Query___type_args(ctx context.Context, rawArgs
 		}
 	}
 	args["name"] = arg0
+	return args, nil
+}
+
+func (ec *executionContext) field_Query_node_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+	var err error
+	args := map[string]interface{}{}
+	var arg0 string
+	if tmp, ok := rawArgs["id"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id"))
+		arg0, err = ec.unmarshalNID2string(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["id"] = arg0
 	return args, nil
 }
 
@@ -980,74 +978,6 @@ func (ec *executionContext) _ComplexField_fieldNullableSrinrg(ctx context.Contex
 	res := resTmp.(*string)
 	fc.Result = res
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) _ComplexInterface_fieldLikeMethod(ctx context.Context, field graphql.CollectedField, obj models.ComplexInterface) (ret graphql.Marshaler) {
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	fc := &graphql.FieldContext{
-		Object:     "ComplexInterface",
-		Field:      field,
-		Args:       nil,
-		IsMethod:   true,
-		IsResolver: false,
-	}
-
-	ctx = graphql.WithFieldContext(ctx, fc)
-	resTmp := ec._fieldMiddleware(ctx, obj, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.FieldLikeMethod()
-	})
-
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.([]string)
-	fc.Result = res
-	return ec.marshalOString2ᚕstringᚄ(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) _ComplexInterface_methodToCall(ctx context.Context, field graphql.CollectedField, obj models.ComplexInterface) (ret graphql.Marshaler) {
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	fc := &graphql.FieldContext{
-		Object:     "ComplexInterface",
-		Field:      field,
-		Args:       nil,
-		IsMethod:   true,
-		IsResolver: false,
-	}
-
-	ctx = graphql.WithFieldContext(ctx, fc)
-	rawArgs := field.ArgumentMap(ec.Variables)
-	args, err := ec.field_ComplexInterface_methodToCall_args(ctx, rawArgs)
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	fc.Args = args
-	resTmp := ec._fieldMiddleware(ctx, obj, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.MethodToCall(ctx, args["aa"].(string))
-	})
-
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(models.ComplexField)
-	fc.Result = res
-	return ec.marshalNComplexField2githubᚗcomᚋyssk22ᚋgoᚑgeneratorsᚋtestdataᚋe2eᚋmodelsᚐComplexField(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _ComplexResult_fieldString(ctx context.Context, field graphql.CollectedField, obj *models.ComplexResult) (ret graphql.Marshaler) {
@@ -1307,6 +1237,42 @@ func (ec *executionContext) _MutationExample_methodWithContextAlias(ctx context.
 	res := resTmp.(*models.ComplexResult)
 	fc.Result = res
 	return ec.marshalOComplexResult2ᚖgithubᚗcomᚋyssk22ᚋgoᚑgeneratorsᚋtestdataᚋe2eᚋmodelsᚐComplexResult(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) _Query_node(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	fc := &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
+	}
+
+	ctx = graphql.WithFieldContext(ctx, fc)
+	rawArgs := field.ArgumentMap(ec.Variables)
+	args, err := ec.field_Query_node_args(ctx, rawArgs)
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	fc.Args = args
+	resTmp := ec._fieldMiddleware(ctx, nil, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Query().Node(rctx, args["id"].(string))
+	})
+
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(models.Node)
+	fc.Result = res
+	return ec.marshalONode2githubᚗcomᚋyssk22ᚋgoᚑgeneratorsᚋtestdataᚋe2eᚋmodelsᚐNode(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Query_queryExample(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -1887,14 +1853,11 @@ func (ec *executionContext) _TypeExample_fieldInterface(ctx context.Context, fie
 	})
 
 	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
 		return graphql.Null
 	}
 	res := resTmp.(models.ComplexInterface)
 	fc.Result = res
-	return ec.marshalNComplexInterface2githubᚗcomᚋyssk22ᚋgoᚑgeneratorsᚋtestdataᚋe2eᚋmodelsᚐComplexInterface(ctx, field.Selections, res)
+	return ec.marshalOComplexInterface2githubᚗcomᚋyssk22ᚋgoᚑgeneratorsᚋtestdataᚋe2eᚋmodelsᚐComplexInterface(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _TypeExample_fieldArray(ctx context.Context, field graphql.CollectedField, obj *models.TypeExample) (ret graphql.Marshaler) {
@@ -3396,6 +3359,24 @@ func (ec *executionContext) unmarshalInputNestedComplexParamsInput(ctx context.C
 
 // region    ************************** interface.gotpl ***************************
 
+func (ec *executionContext) _ComplexInterface(ctx context.Context, sel ast.SelectionSet, obj models.ComplexInterface) graphql.Marshaler {
+	switch obj := (obj).(type) {
+	case nil:
+		return graphql.Null
+	default:
+		panic(fmt.Errorf("unexpected type %T", obj))
+	}
+}
+
+func (ec *executionContext) _Node(ctx context.Context, sel ast.SelectionSet, obj models.Node) graphql.Marshaler {
+	switch obj := (obj).(type) {
+	case nil:
+		return graphql.Null
+	default:
+		panic(fmt.Errorf("unexpected type %T", obj))
+	}
+}
+
 // endregion ************************** interface.gotpl ***************************
 
 // region    **************************** object.gotpl ****************************
@@ -3418,44 +3399,6 @@ func (ec *executionContext) _ComplexField(ctx context.Context, sel ast.Selection
 			}
 		case "fieldNullableSrinrg":
 			out.Values[i] = ec._ComplexField_fieldNullableSrinrg(ctx, field, obj)
-		default:
-			panic("unknown field " + strconv.Quote(field.Name))
-		}
-	}
-	out.Dispatch()
-	if invalids > 0 {
-		return graphql.Null
-	}
-	return out
-}
-
-var complexInterfaceImplementors = []string{"ComplexInterface"}
-
-func (ec *executionContext) _ComplexInterface(ctx context.Context, sel ast.SelectionSet, obj models.ComplexInterface) graphql.Marshaler {
-	fields := graphql.CollectFields(ec.OperationContext, sel, complexInterfaceImplementors)
-
-	out := graphql.NewFieldSet(fields)
-	var invalids uint32
-	for i, field := range fields {
-		switch field.Name {
-		case "__typename":
-			out.Values[i] = graphql.MarshalString("ComplexInterface")
-		case "fieldLikeMethod":
-			out.Values[i] = ec._ComplexInterface_fieldLikeMethod(ctx, field, obj)
-		case "methodToCall":
-			field := field
-			out.Concurrently(i, func() (res graphql.Marshaler) {
-				defer func() {
-					if r := recover(); r != nil {
-						ec.Error(ctx, ec.Recover(ctx, r))
-					}
-				}()
-				res = ec._ComplexInterface_methodToCall(ctx, field, obj)
-				if res == graphql.Null {
-					atomic.AddUint32(&invalids, 1)
-				}
-				return res
-			})
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -3614,6 +3557,17 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("Query")
+		case "node":
+			field := field
+			out.Concurrently(i, func() (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_node(ctx, field)
+				return res
+			})
 		case "queryExample":
 			field := field
 			out.Concurrently(i, func() (res graphql.Marshaler) {
@@ -3710,9 +3664,6 @@ func (ec *executionContext) _TypeExample(ctx context.Context, sel ast.SelectionS
 			out.Values[i] = ec._TypeExample_fieldNullableComplex(ctx, field, obj)
 		case "fieldInterface":
 			out.Values[i] = ec._TypeExample_fieldInterface(ctx, field, obj)
-			if out.Values[i] == graphql.Null {
-				atomic.AddUint32(&invalids, 1)
-			}
 		case "fieldArray":
 			out.Values[i] = ec._TypeExample_fieldArray(ctx, field, obj)
 		case "fieldNullableElementArray":
@@ -4036,16 +3987,6 @@ func (ec *executionContext) marshalNBoolean2bool(ctx context.Context, sel ast.Se
 
 func (ec *executionContext) marshalNComplexField2githubᚗcomᚋyssk22ᚋgoᚑgeneratorsᚋtestdataᚋe2eᚋmodelsᚐComplexField(ctx context.Context, sel ast.SelectionSet, v models.ComplexField) graphql.Marshaler {
 	return ec._ComplexField(ctx, sel, &v)
-}
-
-func (ec *executionContext) marshalNComplexInterface2githubᚗcomᚋyssk22ᚋgoᚑgeneratorsᚋtestdataᚋe2eᚋmodelsᚐComplexInterface(ctx context.Context, sel ast.SelectionSet, v models.ComplexInterface) graphql.Marshaler {
-	if v == nil {
-		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	return ec._ComplexInterface(ctx, sel, v)
 }
 
 func (ec *executionContext) unmarshalNDeepNestedComplexParamsInput2githubᚗcomᚋyssk22ᚋgoᚑgeneratorsᚋtestdataᚋe2eᚋmodelsᚐDeepNestedComplexParams(ctx context.Context, v interface{}) (models.DeepNestedComplexParams, error) {
@@ -4423,6 +4364,13 @@ func (ec *executionContext) marshalOComplexField2ᚖgithubᚗcomᚋyssk22ᚋgo�
 	return ec._ComplexField(ctx, sel, v)
 }
 
+func (ec *executionContext) marshalOComplexInterface2githubᚗcomᚋyssk22ᚋgoᚑgeneratorsᚋtestdataᚋe2eᚋmodelsᚐComplexInterface(ctx context.Context, sel ast.SelectionSet, v models.ComplexInterface) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._ComplexInterface(ctx, sel, v)
+}
+
 func (ec *executionContext) unmarshalOComplexParamsInput2ᚖgithubᚗcomᚋyssk22ᚋgoᚑgeneratorsᚋtestdataᚋe2eᚋmodelsᚐComplexParams(ctx context.Context, v interface{}) (*models.ComplexParams, error) {
 	if v == nil {
 		return nil, nil
@@ -4497,6 +4445,13 @@ func (ec *executionContext) marshalOMyEnum2ᚖgithubᚗcomᚋyssk22ᚋgoᚑgener
 		return graphql.Null
 	}
 	return v
+}
+
+func (ec *executionContext) marshalONode2githubᚗcomᚋyssk22ᚋgoᚑgeneratorsᚋtestdataᚋe2eᚋmodelsᚐNode(ctx context.Context, sel ast.SelectionSet, v models.Node) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._Node(ctx, sel, v)
 }
 
 func (ec *executionContext) unmarshalOString2string(ctx context.Context, v interface{}) (string, error) {

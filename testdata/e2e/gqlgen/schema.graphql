@@ -6,11 +6,18 @@ directive @goModel(
 
 
 type Query @goModel(model: "github.com/yssk22/go-generators/testdata/e2e/models.Query") {
+  node(
+    id: ID!
+  ): Node
   queryExample: TypeExample
 }
 
 type Mutation @goModel(model: "github.com/yssk22/go-generators/testdata/e2e/models.Mutation") {
   exampleMutation: MutationExample
+}
+
+interface Node @goModel(model: "github.com/yssk22/go-generators/testdata/e2e/models.Node") {
+  id: ID!
 }
 
 type TypeExample @goModel(model: "github.com/yssk22/go-generators/testdata/e2e/models.TypeExample") {
@@ -29,7 +36,7 @@ type TypeExample @goModel(model: "github.com/yssk22/go-generators/testdata/e2e/m
   fieldUserDefinedEnum: MyEnum!
   fieldStruct: ComplexField!
   fieldNullableComplex: ComplexField
-  fieldInterface: ComplexInterface!
+  fieldInterface: ComplexInterface
   fieldArray: [String!]
   fieldNullableElementArray: [String]
   fieldArrayOfArray: [[[String]]]
@@ -78,7 +85,7 @@ type ComplexField @goModel(model: "github.com/yssk22/go-generators/testdata/e2e/
   fieldNullableSrinrg: String
 }
 
-type ComplexInterface @goModel(model: "github.com/yssk22/go-generators/testdata/e2e/models.ComplexInterface") {
+interface ComplexInterface @goModel(model: "github.com/yssk22/go-generators/testdata/e2e/models.ComplexInterface") {
   fieldLikeMethod: [String!]
   methodToCall(
     aa: String!

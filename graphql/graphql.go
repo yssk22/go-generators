@@ -43,6 +43,7 @@ const (
 // GraphQLObject represents type Name {...}
 type GraphQLObject struct {
 	Name       string
+	IsNode     bool
 	GoModel    string
 	ObjectType GraphQLObjectType // type, input, scalar, enum
 	Fields     []GraphQLObjectField

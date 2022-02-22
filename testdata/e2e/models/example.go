@@ -6,9 +6,25 @@ import (
 	"io"
 )
 
+type Node interface {
+	ID() string
+}
+
+type MyNode struct {
+	id string
+}
+
+func (n *MyNode) ID() string {
+	return n.id
+}
+
 // type Query { .... }
 type Query struct {
 	RootField string // should not be exposed to schema
+}
+
+func (q *Query) Node(ctx context.Context, id string) (Node, error) {
+	return &MyNode{id: id}, nil
 }
 
 func (q *Query) QueryExample(ctx context.Context) (*TypeExample, error) {
