@@ -109,11 +109,14 @@ func newBuilder(dir string) (*builder, error) {
 		b.standardPackageMap[s] = nil
 	}
 	cfg := &packages.Config{
-		Mode: packages.LoadAllSyntax,
+		Mode: packages.NeedImports | packages.NeedTypes | packages.NeedDeps | packages.NeedName | packages.NeedSyntax,
 		Dir:  dir,
 	}
 	pkgs, err := packages.Load(cfg, append(standardPackages, importPath)...)
 	if err != nil {
+		if strings.Contains(err.Error(), fmt.Sprintf("%s: no such file or directory", dir)) {
+			return nil, os.ErrNotExist
+		}
 		return nil, err
 	}
 	for _, p := range pkgs {
