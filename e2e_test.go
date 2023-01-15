@@ -36,7 +36,9 @@ func TestE2E(t *testing.T) {
 	}
 	// launch a new server process
 	var cmdErr error
+	var stderr bytes.Buffer
 	cmd := exec.Command("go", "run", "./")
+	cmd.Stderr = &stderr
 	cmd.Dir = "./testdata/e2e/"
 	cmd.SysProcAttr = &syscall.SysProcAttr{Setpgid: true}
 	go func() {
@@ -44,7 +46,7 @@ func TestE2E(t *testing.T) {
 	}()
 	defer func() {
 		if cmdErr != nil {
-			t.Fatalf("cannot start a process: %s", cmdErr)
+			t.Fatalf("cannot start a process: %s - stderr: %s", cmdErr, stderr.String())
 		}
 		if cmd.Process != nil {
 			syscall.Kill(-cmd.Process.Pid, syscall.SIGKILL)
